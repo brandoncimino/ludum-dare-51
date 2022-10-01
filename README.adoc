@@ -6,3 +6,8 @@ The full `README` is located at link:Assets/README.adoc[]!
 ====
 
 The Unity editor version required for this project can be found at link:ProjectSettings/ProjectVersion.txt[].
+
+
+== Things to add to the `unity-template`:
+
+- [ ] link:Directory.Build.props[] to enable nullable reference types

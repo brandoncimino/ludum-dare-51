@@ -1,0 +1,14 @@
+<!--
+    Unity will re-generate `.csproj` files all the time, which means you can't use them.
+    So, to configure everything that we _would_ use the `.csproj` for, we use `Directory.Build.props`:
+    
+    > The Directory.Build.props works almost like a "normal" csproj file.
+    >
+    > - https://steven-giesel.com/blogPost/f3f46814-06c9-41b7-84fa-09ebb3305ed0 
+-->
+<Project>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+</Project>
