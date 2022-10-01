@@ -11,3 +11,4 @@ The Unity editor version required for this project can be found at link:ProjectS
 == Things to add to the `unity-template`:
 
 - [ ] link:Directory.Build.props[] to enable nullable reference types
+- [ ] Remove some leftover link:UserSettings/[] files
