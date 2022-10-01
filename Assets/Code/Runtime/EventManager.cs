@@ -27,18 +27,8 @@ public class EventManager : MonoBehaviour {
         
         Debug.Log("Bomb explosion event triggered");
         
-        // find out who's in range of the explosion
-        OnVictimsTracked();
-        
         // do the explosion
         BombExploded?.Invoke();
-    }
-    
-    public event Action VictimsTracked;
-
-    public void OnVictimsTracked() {
-        Debug.Log("Explosion victimes are being tracked");
-        VictimsTracked?.Invoke();
     }
 
     #endregion
