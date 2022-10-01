@@ -164,10 +164,6 @@ namespace Code.Runtime.Bathymetry {
             return point >= min && point <= max;
         }
 
-        public static void nullableTest() {
-            string? str = null;
-        }
-
         public static float GetPortion(float value, Vector2 range) {
             if (!IsPointInRange(value, range)) {
                 throw new BrandonException($"The value {value} isn't within the range {range}");
