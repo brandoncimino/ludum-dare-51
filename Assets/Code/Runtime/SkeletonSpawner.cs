@@ -71,7 +71,7 @@ public class SkeletonSpawner : MonoBehaviour
         while (spawnIsColliding(spawnPos) && maxLoops < 5)
         {
             spawnPos.x = (this.transform.position.x > spawnPos.x) ? spawnPos.x + xCollisionOffset : spawnPos.x - xCollisionOffset;
-            spawnPos.z = (this.transform.position.z > spawnPos.z) ? spawnPos.z + xCollisionOffset : spawnPos.z - xCollisionOffset;
+            spawnPos.z = (this.transform.position.z > spawnPos.z) ? spawnPos.z + zCollisionOffset : spawnPos.z - zCollisionOffset;
             maxLoops++;
         }
 
