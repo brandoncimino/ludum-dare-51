@@ -20,4 +20,16 @@ public class EventManager : MonoBehaviour {
     public void         OnGameEnded() => GameEnded?.Invoke();
 
     #endregion
+    
+    #region Explosion-Stuff
+    public event Action BombExploded;
+    public void OnBombExploded() {
+        
+        Debug.Log("Bomb explosion event triggered");
+        
+        // do the explosion
+        BombExploded?.Invoke();
+    }
+
+    #endregion
 }
