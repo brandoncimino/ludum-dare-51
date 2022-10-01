@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: plank_mdl_v001.ma
-//Last modified: Sat, Oct 01, 2022 03:26:41 PM
+//Last modified: Sat, Oct 01, 2022 03:29:33 PM
 //Codeset: 1252
 requires maya "2023";
 requires "mtoa" "5.1.0";
@@ -11,12 +11,12 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202202161415-df43006fd3";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 22000)";
-fileInfo "UUID" "478EBC96-42A5-A1E7-E66E-BEB851A2A529";
+fileInfo "UUID" "98C3F2C5-413F-E846-B876-909FE558F5CC";
 createNode transform -s -n "persp";
 	rename -uid "BC4B32B9-4FA8-E24F-8B9A-A5839D640904";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 769.2369083152995 535.19399486045472 -620.36898060084559 ;
-	setAttr ".r" -type "double3" -26.138352729133256 489.00000000007765 0 ;
+	setAttr ".t" -type "double3" -203.57760023620187 325.18614720523743 -1028.4453393435392 ;
+	setAttr ".r" -type "double3" -14.138352729175324 552.59999999987394 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "AAB50591-4368-A2BF-F324-3BB68F23470D";
 	setAttr -k off ".v" no;
