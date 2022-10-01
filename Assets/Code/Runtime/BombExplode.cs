@@ -39,9 +39,12 @@ namespace Code.Runtime
         //private ParticleSystem explosionPS;
     
         // Start is called before the first frame update
-        void Start()
-        {
-            
+        void Start() {
+            EventManager.current.BombExploded += Kaboom;
+        }
+
+        private void OnDestroy() {
+            EventManager.current.BombExploded -= Kaboom;
         }
 
         // Update is called once per frame
@@ -49,7 +52,7 @@ namespace Code.Runtime
         {
         
         }
-
+        
         private void FixedUpdate()
         {
             BombTickUpdate(Time.deltaTime);
@@ -62,7 +65,7 @@ namespace Code.Runtime
             if (WickRemaining <= 0f)
             {
                 //Kaboom! 💥
-                Kaboom();
+                EventManager.current.OnBombExploded();
             }
         }
 
