@@ -12,3 +12,5 @@ The Unity editor version required for this project can be found at link:ProjectS
 
 - [ ] link:Directory.Build.props[] to enable nullable reference types
 - [ ] Remove some leftover link:UserSettings/[] files
+- [ ] Update `brandon-utils` version
+** [ ] Update / remove template files, which are no longer valid
