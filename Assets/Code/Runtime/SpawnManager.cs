@@ -9,70 +9,73 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject playerPrefab;
     [SerializeField]
+    private float secondsBetweenSpawn = 10;
+    [SerializeField]
+    private int maxSpawnersUsedAtATime = 3;
+    [SerializeField]
     private int maxGlobalSkeletonSpawn = 20;
 
     private bool spawnersDeactivated = false;
-    private SkeletonSpawner previousSpawnerClosestToPlayer = null;
+    private float elapsedTime = 0.0f;
 
     void Update()
     {
+        //keeps track of how much time has passed
+        elapsedTime += Time.deltaTime;
+
+        //gets the number of skeletons spawned to limit how many exist in the scene at a given point
+        //creates a sortedlist of spawners that are closest to farthest from the player
         int skeletonsSpawned = 0;
         Vector3 playerPos = playerPrefab.transform.position;
-        var closestSpawnerToPlayer = spawners[0];
-        float smallestDistanceFromPlayer = 0f;
+        SortedList<float, SkeletonSpawner> closestToFarthestSpawners = new SortedList<float, SkeletonSpawner>();
         for (int i = 0; i < spawners.Length; i++)
         {
-            skeletonsSpawned += spawners[i].getSkeletonCount();
+            skeletonsSpawned += spawners[i].skeletonCount;
             Vector3 spawnerPos = spawners[i].transform.position;
 
             var distance = Vector3.Distance(spawnerPos, playerPos);
-
-            //if we find a new spawner thats closest to the player, then we keep track of that spawner
-            if(smallestDistanceFromPlayer == 0f || distance < smallestDistanceFromPlayer)
-            {
-                closestSpawnerToPlayer = spawners[i];
-                smallestDistanceFromPlayer = distance;
-            }
+            closestToFarthestSpawners.Add(distance, spawners[i]);
         }
 
-        //resets the previous spawner closest to the player to its original spawn rate
-        //and sets the spawn rate for the new spawner closest to the player
-        //if they're the same game object, then skip
-        if (!GameObject.ReferenceEquals(closestSpawnerToPlayer, previousSpawnerClosestToPlayer))
+        if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
         {
-            closestSpawnerToPlayer.setIsClosestToPlayer(true);
+            elapsedTime = 0;
 
-            //if it isnt null, then run this function
-            if (previousSpawnerClosestToPlayer)
+            //loop through each spawner and sapwn enemies
+            //maxSpawnersUsedAtATime indicates the amount of spawners we want to activate at a time
+            int i = 0;
+            foreach(KeyValuePair<float, SkeletonSpawner> kvp in closestToFarthestSpawners)
             {
-                previousSpawnerClosestToPlayer.setIsClosestToPlayer(false);
+                if (i >= maxSpawnersUsedAtATime) {
+                    break;
+                }
+
+                try
+                {
+                    spawnEnemies(kvp.Value, maxSpawnersUsedAtATime - i);
+                } catch(System.InvalidOperationException e)
+                {
+                    Debug.Log("Couldn't spawn skeleton");
+                }
+
+                i++;
             }
-
-            previousSpawnerClosestToPlayer = closestSpawnerToPlayer;
-        }
-
-        //if the total skeletons spawned from all spawners is greater than or equal to the max allowed globally,
-        //and the spawners haven't been deactivated, then deactivate all of them
-        //if there are less skeletons than the global max, and the spawners were previously deactivated, reactivate them all
-        //if there's less skeletons than global max and they haven't been deactivated, do nothing
-        if (skeletonsSpawned >= maxGlobalSkeletonSpawn && !spawnersDeactivated)
-        {
-            calibrateSpawners(false);
-        } else if(skeletonsSpawned < maxGlobalSkeletonSpawn && spawnersDeactivated)
-        {
-            calibrateSpawners(true);
         }
     }
 
-    //activates and deactivates spawners depending on the number of skeletons spawned in the scene
-    private void calibrateSpawners(bool setActive)
+    //calls the skeleton spawner to determine the coords to spawn skeletons at
+    //bacthSpawnAmount allows skeletons to be spawned in clusters
+    private void spawnEnemies(SkeletonSpawner spawner, int batchSpawnAmount)
     {
-        for (int i = 0; i < spawners.Length; i++)
+        for (int i = 0; i < batchSpawnAmount; i++)
         {
-            spawners[i].setContinueSpawning(setActive);
+            Vector3 spawnPos = spawner.determineSpawnLocation() ?? Vector3.zero;
+
+            if (spawnPos != Vector3.zero)
+            {
+                GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
+                spawner.skeletonCount++;
+            }
         }
-
-        spawnersDeactivated = !setActive;
     }
-
 }

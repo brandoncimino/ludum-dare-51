@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3030691148726211495}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.18, y: -14.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7618585315719796537
 MonoBehaviour:
@@ -45,16 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonPrefab: {fileID: 5297295536008221911, guid: ec346ad55bc96b940a4071810c2e5d5d, type: 3}
-  skeletonInterval: 3.5
-  maxSkeletonSpawn: 5
   spawnCollisionDetectionRadius: 1
   excludeSpawnCollisionTags:
   - Floor
-  spawnRateIncreaseByFactor: 2
   xAxisMinRange: -5
   xAxisMaxRange: 5
   zAxisMinRange: -5
   zAxisMaxRange: 5
-  yAxisUpwardDistance: 0.5
   xCollisionOffset: 0.3
   zCollisionOffset: 0.3

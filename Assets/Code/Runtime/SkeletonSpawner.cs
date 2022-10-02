@@ -4,102 +4,47 @@ using UnityEngine;
 
 public class SkeletonSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject skeletonPrefab;
-    [SerializeField]
-    private float skeletonInterval = 3.5f;
-    [SerializeField]
-    private int maxSkeletonSpawn = 5;
+    public GameObject skeletonPrefab;
     [SerializeField]
     private float spawnCollisionDetectionRadius = 1f;
     [SerializeField]
     private List<string> excludeSpawnCollisionTags;
-    [SerializeField]
-    private int spawnRateIncreaseByFactor = 2;
  
-    private int skeletonCount = 0;
-
-    /// if the global spawn limit has been reached, stops spawning enemies entirely
-    private bool continueSpawning = true;
-    /// if we tried to spawn something but it was still colliding, then skip instantiating so the game doesn't freeze
-    private bool couldSpawn = true;
-    /// if this spawner is the closest to the player, then speed up the spawn rate
-    private bool isClosestToPlayer = false;
+    public int skeletonCount { get; set; } = 0;
 
     public float xAxisMinRange = -5f;
     public float xAxisMaxRange = 5f;
     public float zAxisMinRange = -5f;
     public float zAxisMaxRange = 5f;
-    public float yAxisUpwardDistance = 0.5f;
 
     public float xCollisionOffset = 0.3f;
     public float zCollisionOffset = 0.3f;
 
-    void Start()
+    public Vector3? determineSpawnLocation()
     {
-        StartCoroutine(spawnEnemy(skeletonPrefab, skeletonInterval, maxSkeletonSpawn));
-    }
-
-    private IEnumerator spawnEnemy(GameObject enemy, float interval, int enemyMaxSpawn) {
-        float finalInterval = (isClosestToPlayer) ? interval / spawnRateIncreaseByFactor : interval;
-        yield return new WaitForSeconds(finalInterval);
-        
-        if (skeletonCount < enemyMaxSpawn && continueSpawning)
-        {
-            Vector3 spawnPos = determineSpawnLocation();
-
-            //used so we can get out of the while loop check if it couldn't spawn an enemy
-            if (couldSpawn)
-            {
-                GameObject newEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
-                newEnemy.GetComponent<SkeletonTest>().setSpawner(transform.gameObject);
-                skeletonCount++;
-            } else
-            {
-                couldSpawn = true;
-            }
-        }
-
-        StartCoroutine(spawnEnemy(enemy, interval, enemyMaxSpawn));
-    }
-
-        private static RaycastHit HitTerrain(float x, float z) {
-        var rayOrigin = new Vector3(x, 0, z);
-        return Physics.Raycast(rayOrigin, Vector3.down, out var hit) ? hit : throw new InvalidOperationException($"Point (x: {x}, z: {z}) isn't in this terrestrial sphere!");
-    }
-
-    private Vector3? determineSpawnLocation() {
-        var spawnX   = Random.Range(xAxisMaxRange, xAxisMaxRange);
-        var spawnZ   = Random.Range(zAxisMaxRange, zAxisMaxRange);
+        var spawnX = Random.Range(xAxisMinRange, xAxisMaxRange);
+        var spawnZ = Random.Range(zAxisMinRange, zAxisMaxRange);
         var position = transform.position;
         var spawnPos = HitTerrain(position.x + spawnX, position.z + spawnZ).point;
 
         const int maxLoops = 5;
-        for (int i = 0; i < maxLoops; i++) {
-            if (spawnIsColliding(spawnPos) == false) {
+        for (int i = 0; i < maxLoops; i++)
+        {
+            if (spawnIsColliding(spawnPos) == false)
+            {
                 return spawnPos;
             }
-            
+
             spawnPos.x = (this.transform.position.x > spawnPos.x) ? spawnPos.x + xCollisionOffset : spawnPos.x - xCollisionOffset;
             spawnPos.z = (this.transform.position.z > spawnPos.z) ? spawnPos.z + zCollisionOffset : spawnPos.z - zCollisionOffset;
         }
 
         return null;
     }
-    {
-        Vector3 spawnPos = new Vector3(Random.Range(xAxisMinRange, xAxisMaxRange), this.transform.position.y + yAxisUpwardDistance, Random.Range(zAxisMinRange, zAxisMaxRange));
 
-        int maxLoops = 0;
-        while (spawnIsColliding(spawnPos) && maxLoops < 5)
-        {
-            spawnPos.x = (this.transform.position.x > spawnPos.x) ? spawnPos.x + xCollisionOffset : spawnPos.x - xCollisionOffset;
-            spawnPos.z = (this.transform.position.z > spawnPos.z) ? spawnPos.z + zCollisionOffset : spawnPos.z - zCollisionOffset;
-            maxLoops++;
-        }
-
-        couldSpawn = (maxLoops == 5) ? false : true;
-
-        return spawnPos;
+    private static RaycastHit HitTerrain(float x, float z) {
+        var rayOrigin = new Vector3(x, 0, z);
+        return Physics.Raycast(rayOrigin, Vector3.down, out var hit) ? hit : throw new System.InvalidOperationException($"Point (x: {x}, z: {z}) isn't in this terrestrial sphere!");
     }
 
     private bool spawnIsColliding(Vector3 spawnPos)
@@ -115,26 +60,6 @@ public class SkeletonSpawner : MonoBehaviour
         }
 
         return isCollidingWithObjects;
-    }
-
-    public int getMaxSpawnCount()
-    {
-        return maxSkeletonSpawn;
-    }
-
-    public int getSkeletonCount()
-    {
-        return skeletonCount;
-    }
-
-    public void setContinueSpawning(bool value)
-    {
-        continueSpawning = value;
-    }
-
-    public void setIsClosestToPlayer(bool value)
-    {
-        isClosestToPlayer = value;
     }
 
     public void decrimentSkeletonCount()
