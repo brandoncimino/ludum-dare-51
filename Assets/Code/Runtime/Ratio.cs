@@ -49,5 +49,9 @@ namespace Code.Runtime {
         }
 
         public SRatio(float value01) : this() => Value = value01;
+        
+        public static implicit operator float(SRatio ratio) => ratio.Value;
+        public static implicit operator SRatio(float ratio) => new(ratio);
+        public static implicit operator SRatio(Ratio ratio) => new(ratio);
     }
 }
