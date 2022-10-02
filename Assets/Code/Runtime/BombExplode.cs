@@ -90,7 +90,7 @@ namespace Code.Runtime
             {
                 //Debug.Log(hitColliders[i].name +" is being checked");
                 var currentExplodable = explosionBuffer[i].GetComponent<IBlastable?>();
-                currentExplodable?.Exploded(transform.position);
+                currentExplodable?.Blasted(transform.position);
             }
         
 
@@ -98,7 +98,7 @@ namespace Code.Runtime
             WickRemaining += MaxWick;
         }
 
-        public void Exploded(Vector3 bombPos)
+        public void Blasted(Vector3 bombPos)
         {
             //Random force on the Bomb to move it around.
             //TODO: Determine best force to apply. Probably needs a lot of positive Y (World perspective) to emulate the bomb exploding
