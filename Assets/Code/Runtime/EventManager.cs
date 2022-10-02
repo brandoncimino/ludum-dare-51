@@ -19,8 +19,11 @@ public class EventManager : MonoBehaviour {
     public event Action GameEnded;
     public void         OnGameEnded() => GameEnded?.Invoke();
 
+    public event Action GameWon;
+    public void OnGameWon() => GameWon?.Invoke();
+
     #endregion
-    
+
     #region Explosion-Stuff
     public event Action BombExploded;
     public void OnBombExploded() {
@@ -32,4 +35,29 @@ public class EventManager : MonoBehaviour {
     }
 
     #endregion
+
+    //ScoreController Events
+
+    #region Wave Clear
+    public event Action WaveClear;
+    public void OnWaveClear() => WaveClear?.Invoke();
+    #endregion
+
+    #region Kill Enemy
+    public event Action KillEnemy;
+    public void OnKillEnemy() => KillEnemy?.Invoke();
+    #endregion
+
+    //UIController Events
+
+    #region Update Kill Count
+    public event Action<int> UpdateKillCount;
+    public void OnUpdateKillCount(int killCount) => UpdateKillCount?.Invoke(killCount);
+    #endregion
+
+    #region Initialize UI
+    public event Action<int, int> InitializeUI;
+    public void OnInitializeUI(int waveCount, int killCount) => InitializeUI?.Invoke(waveCount, killCount);
+    #endregion
+
 }
