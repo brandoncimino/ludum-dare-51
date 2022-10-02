@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace Code.Runtime.PlayerInput {
     [Serializable]
-    public record KeyAxis(KeyCode Positive, KeyCode Negative) : IInputAxis {
-        public float Position => Positive.IntState() - Negative.IntState();
+    public sealed record KeyAxis(KeyCode Positive, KeyCode Negative) : IInputAxis {
+        public Ratio Position    => Positive.IntState() - Negative.IntState();
 
         public static readonly KeyAxis WS = new(KeyCode.W, KeyCode.S);
         public static readonly KeyAxis AD = new(KeyCode.D, KeyCode.A);
@@ -18,5 +18,9 @@ namespace Code.Runtime.PlayerInput {
 
         public static readonly KeyAxis NumpadHorizontal = new(KeyCode.Keypad6, KeyCode.Keypad4);
         public static readonly KeyAxis NumpadVertical   = new(KeyCode.Keypad8, KeyCode.Keypad2);
+
+        public override string ToString() {
+            return $"⌨ {Negative.PrettyIntState()}⇔{Positive.PrettyIntState()} ⇒ {Position}";
+        }
     }
 }

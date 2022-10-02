@@ -4,7 +4,7 @@ using Code.Runtime.PlayerInput.Stick;
 using UnityEngine;
 
 namespace Code.Runtime.PlayerInput {
-    public class MouseAndKeyboard : IDualStick {
+    public record MouseAndKeyboard : IDualStick {
         public static readonly MouseAndKeyboard Static = new();
         
         public IJoystick WalkStick => KeyStick.WASD;
@@ -16,5 +16,9 @@ namespace Code.Runtime.PlayerInput {
         public IButton   Pause     { get; } = new KeyButton(KeyCode.Escape);
         public IButton   Submit    { get; } = new KeyButton(KeyCode.KeypadEnter) | new KeyButton(KeyCode.Return);
         public IButton   Back      { get; } = new KeyButton(KeyCode.Backspace)   | new KeyButton(KeyCode.Delete);
+
+        public override string ToString() {
+            return this.UIFormat();
+        }
     }
 }
