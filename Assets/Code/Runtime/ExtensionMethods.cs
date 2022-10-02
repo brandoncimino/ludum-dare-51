@@ -19,14 +19,20 @@ namespace Code.Runtime {
 
         public static Vector3 UpdateWith(this Vector3 source, Vector3 update, Axes axes) => source.UpdateWith(Nector3.Of(update, axes));
         public static Vector3 UpdateWith(this Vector3 source, Nector3 nector3) => nector3.ApplyTo(source);
-        
-        public static T RequireComponent<T>(this MonoBehaviour gameObject, [CallerMemberName] string? _caller = default) where T : notnull {
-            return gameObject.TryGetComponent(out T comp)
-                       ? comp
-                       : throw new InvalidOperationException($"{_caller} requires a {typeof(T).Name} component!");
-        }
 
-        public static Lazy<T> CreateLazyComponent<T>(this GameObject gameObject) => new(gameObject.GetComponent<T>);
+        public static bool TryGetComponentInChildren<T>(this MonoBehaviour gameObject, out T component) {
+            component = gameObject.GetComponentInChildren<T>();
+            return ReferenceEquals(component, null) == false;
+        }
+        
+        public static T RequireComponent<T>(this MonoBehaviour gameObject, bool includeChildren = false) where T : notnull {
+            if (gameObject.TryGetComponent(out T comp) ||
+                gameObject.TryGetComponentInChildren(out comp)) {
+                return comp;
+            }
+
+            throw new InvalidOperationException($"[{gameObject.GetType().Name}]{gameObject.name} requires a {typeof(T).Name} component!");
+        }
     }
 
     [Flags]
