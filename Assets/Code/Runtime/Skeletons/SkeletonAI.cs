@@ -20,6 +20,9 @@ public class SkeletonAI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
+        //if the game is paused, then we don't want to run anything 
+        if (!GameManager.current.gamePaused)
+        {
+        }
     }
 }
