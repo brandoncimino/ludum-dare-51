@@ -27,8 +27,13 @@ public class SkeletonMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        
+        // rotate body towards the direction the head is looking
         transform.rotation = Quaternion.RotateTowards(transform.rotation, myHead.rotation,    2);
+        // counterbalance head rotation
         myHead.rotation    = Quaternion.RotateTowards(myHead.rotation,    transform.rotation, 2);
+        
+        // move forwards
         controller.SimpleMove(speed * transform.forward);
     }
 
