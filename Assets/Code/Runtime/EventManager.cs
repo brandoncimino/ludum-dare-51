@@ -32,4 +32,11 @@ public class EventManager : MonoBehaviour {
     }
 
     #endregion
+
+    #region Skeletons
+
+    public event Action SkeletonShouted;
+    public void         OnSkeletonShouted() => SkeletonShouted?.Invoke();
+
+    #endregion
 }
