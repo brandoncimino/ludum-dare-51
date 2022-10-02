@@ -23,7 +23,7 @@ public class SkeletonSpawner : MonoBehaviour
     private bool continueSpawning = true;
     /// if we tried to spawn something but it was still colliding, then skip instantiating so the game doesn't freeze
     private bool couldSpawn = true;
-    //if this spawner is the closest to the player, then speed up the spawn rate
+    /// if this spawner is the closest to the player, then speed up the spawn rate
     private bool isClosestToPlayer = false;
 
     public float xAxisMinRange = -5f;
