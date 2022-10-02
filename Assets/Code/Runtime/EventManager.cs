@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Code.Runtime.Skeletons;
+
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
@@ -19,6 +21,9 @@ public class EventManager : MonoBehaviour {
     public event Action GameEnded;
     public void         OnGameEnded() => GameEnded?.Invoke();
 
+    public event Action GameWon;
+    public void OnGameWon() => GameWon?.Invoke();
+
     #endregion
     
     #region Explosion-Stuff
@@ -32,4 +37,36 @@ public class EventManager : MonoBehaviour {
     }
 
     #endregion
+
+    #region Skeletons
+
+    public event Action <SkeletonShout> SkeletonShouted;
+    public void         OnSkeletonShouted(SkeletonShout shout) => SkeletonShouted?.Invoke(shout);
+
+    #endregion
+
+    //ScoreController Events
+
+    #region Wave Clear
+    public event Action WaveClear;
+    public void OnWaveClear() => WaveClear?.Invoke();
+    #endregion
+
+    #region Kill Enemy
+    public event Action KillEnemy;
+    public void OnKillEnemy() => KillEnemy?.Invoke();
+    #endregion
+
+    //UIController Events
+
+    #region Update Kill Count
+    public event Action<int> UpdateKillCount;
+    public void OnUpdateKillCount(int killCount) => UpdateKillCount?.Invoke(killCount);
+    #endregion
+
+    #region Initialize UI
+    public event Action<int, int> InitializeUI;
+    public void OnInitializeUI(int waveCount, int killCount) => InitializeUI?.Invoke(waveCount, killCount);
+    #endregion
+
 }
