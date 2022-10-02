@@ -8,7 +8,8 @@ namespace Code.Runtime
     {
         BombExplode() 
         {
-            _myRigidbody  = new Lazy<Rigidbody>(GetComponent<Rigidbody>);
+            _myRigidbody = new Lazy<Rigidbody>(GetComponent<Rigidbody>);
+            _myAudio     = new Lazy<AudioSource>(GetComponent<AudioSource>);
         }
         
         private       float WickRemaining = MaxWick; //Time in seconds before next detonation
@@ -17,8 +18,10 @@ namespace Code.Runtime
 
         public float explosionRadius;
 
-        private readonly Lazy<Rigidbody> _myRigidbody;
-        private          Rigidbody       myRigidbody => _myRigidbody.Value;
+        private readonly Lazy<Rigidbody>   _myRigidbody;
+        private          Rigidbody         myRigidbody => _myRigidbody.Value;
+        private readonly Lazy<AudioSource> _myAudio;
+        private          AudioSource       myAudio => _myAudio.Value;
 
         ///Physics.OverlapSphereNonAlloc is much more efficient than Physics.OverlapSphere, at the cost of having a max
         /// number of colliders it can gather. Number chosen is arbitrary until further testing. Must be larger than max
@@ -87,7 +90,7 @@ namespace Code.Runtime
             {
                 //Debug.Log(hitColliders[i].name +" is being checked");
                 var currentExplodable = explosionBuffer[i].GetComponent<IBlastable?>();
-                currentExplodable?.Exploded(transform.position);
+                currentExplodable?.Blasted(transform.position);
             }
         
 
@@ -95,11 +98,12 @@ namespace Code.Runtime
             WickRemaining += MaxWick;
         }
 
-        public void Exploded(Vector3 bombPos)
+        public void Blasted(Vector3 bombPos)
         {
             //Random force on the Bomb to move it around.
             //TODO: Determine best force to apply. Probably needs a lot of positive Y (World perspective) to emulate the bomb exploding
-            myRigidbody.AddForce(Random.insideUnitSphere * 100);
+            myRigidbody.AddForce(Random.insideUnitSphere.normalized * 1000);
+            myAudio.Play();
         }
     }
 }

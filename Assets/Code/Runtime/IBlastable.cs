@@ -4,6 +4,6 @@ namespace Code.Runtime
 {
     public interface IBlastable
     {
-        void Exploded(Vector3 bombPos);
+        void Blasted(Vector3 bombPos);
     }
 }
