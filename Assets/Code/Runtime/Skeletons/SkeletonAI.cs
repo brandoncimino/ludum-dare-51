@@ -15,14 +15,18 @@ public class SkeletonAI : MonoBehaviour {
     private Transform        myHead;
 
     private float DecisionTime;
+    private float ShoutTime;
+    private float ListenTime;
     private bool  hasListened = false;
     
     // Start is called before the first frame update
     void Start() {
         
         // initial variable settings
-        myHead = myBody.myHead;  // make sure body and mind share the same head
-        
+        myHead     = myBody.myHead; // make sure body and mind share the same head
+        ShoutTime  = Time.time;
+        ListenTime = Time.time;
+
         // initial setup
         MakeDecision(); // initial decision about state and target
         
@@ -38,7 +42,9 @@ public class SkeletonAI : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        hasListened = false;
+        if (Time.time > ListenTime) {
+            hasListened = false; // listen to shouts again
+        }
         
         // update decision counter
         if (Time.time > DecisionTime) {
@@ -117,13 +123,21 @@ public class SkeletonAI : MonoBehaviour {
     
 
     void CommunicateDecision() {
-        if (myAIState != SkeletonAIState.Wandering) {
-            // update surrounding skeletons about what we are doing
-            hasListened = true; // avoid infinite shouting loops
-
-            var shout = new SkeletonShout(newState: myAIState, shouter: transform.position, enemy: null);
-            EventManager.current.OnSkeletonShouted(shout);
+        if (myAIState == SkeletonAIState.Wandering) {
+            return;
         }
+
+        if (Time.time > ShoutTime) {
+            return;
+        }
+        
+        // update surrounding skeletons about what we are doing
+        hasListened = true; // avoid infinite shouting loops
+
+        var shout = new SkeletonShout(newState: myAIState, shouter: transform.position, enemy: null);
+        EventManager.current.OnSkeletonShouted(shout);
+
+        ShoutTime = Time.time + 1f;
     }
 
     void ObayCommands(SkeletonShout shout) {
@@ -137,12 +151,12 @@ public class SkeletonAI : MonoBehaviour {
             // outside of hearing range
             return;
         }
-
+        
         hasListened = true; // avoid infinite loops
         // todo: react to communicated threats rather than thinking for yourself
         MakeDecision(mayWander: false);
+        ListenTime = Time.time + 0.5f;
         
     }
-    
     
 }
