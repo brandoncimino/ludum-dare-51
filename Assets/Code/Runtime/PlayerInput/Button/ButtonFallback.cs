@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
+using BrandonUtils.Standalone.Collections;
 
 namespace Code.Runtime.PlayerInput.Button {
     public record ButtonFallback(IEnumerable<IButton> Buttons) : IButton, IEnumerable<IButton> {
@@ -39,5 +42,13 @@ namespace Code.Runtime.PlayerInput.Button {
 
         public IEnumerator<IButton> GetEnumerator() => Buttons.GetEnumerator();
         IEnumerator IEnumerable.    GetEnumerator() => ((IEnumerable)Buttons).GetEnumerator();
+
+        public override string ToString() {
+            return new StringBuilder()
+                   .Append('[')
+                   .AppendJoin(" / ", this)
+                   .Append(']')
+                   .ToString();
+        }
     }
 }

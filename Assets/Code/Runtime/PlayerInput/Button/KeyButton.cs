@@ -14,5 +14,9 @@ namespace Code.Runtime.PlayerInput.Button {
         public static ButtonFallback operator |(KeyButton a, KeyButton b) {
             return new ButtonFallback(a, b);
         }
+
+        public override string ToString() {
+            return $"⌨ {Key}({State})";
+        }
     }
 }

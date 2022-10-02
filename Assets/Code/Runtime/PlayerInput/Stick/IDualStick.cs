@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Reflection;
 
 using Code.Runtime.PlayerInput.Button;
 
@@ -13,5 +15,25 @@ namespace Code.Runtime.PlayerInput.Stick {
         public IButton          Pause     { get; }
         public IButton          Submit    { get; }
         public IButton          Back    { get; }
+    }
+
+    public static class DualStickExtensions {
+        private static string Icon(this Type inputType) {
+            if (inputType == typeof(IButton)) {
+                return "🔘";
+            }
+
+            if (inputType == typeof(IJoystick)) {
+                return "🕹";
+            }
+
+            return "";
+        }
+        
+        public static string UIFormat(this IDualStick dualStick) {
+            var stuff = typeof(IDualStick).GetProperties()
+                                          .Select(it => $"{it.PropertyType.Icon()} {it.GetValue(dualStick)}");
+            return $"🎮\n\t{string.Join("\n\t", stuff)}";
+        }
     }
 }
