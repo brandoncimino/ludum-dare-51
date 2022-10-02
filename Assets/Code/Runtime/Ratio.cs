@@ -11,7 +11,7 @@ namespace Code.Runtime {
     /// <exception cref="ArgumentOutOfRangeException">if <see cref="Value"/> is set to something &lt; 0 or > 1</exception>
     public readonly struct Ratio {
         private readonly float _value;
-        
+
         /// <summary>
         /// A <see cref="float"/> that is ≥ 0 and ≤ 1.
         /// </summary>
@@ -35,7 +35,7 @@ namespace Code.Runtime {
     /// </summary>
     public readonly struct SRatio {
         private readonly float _value;
-        
+
         /// <summary>
         /// A <see cref="float"/> that is ≥ -1 and ≤ 1.
         /// </summary>
@@ -43,13 +43,13 @@ namespace Code.Runtime {
         public float Value {
             get => _value;
             init => _value = value switch {
-                >= -1 and <= -1 => value,
-                _               => throw new ArgumentOutOfRangeException(nameof(value), value, "Must be >= -1 and <= 1!")
+                >= -1 and <= 1 => value,
+                _              => throw new ArgumentOutOfRangeException(nameof(value), value, "Must be >= -1 and <= 1!")
             };
         }
 
         public SRatio(float value01) : this() => Value = value01;
-        
+
         public static implicit operator float(SRatio ratio) => ratio.Value;
         public static implicit operator SRatio(float ratio) => new(ratio);
         public static implicit operator SRatio(Ratio ratio) => new(ratio);
