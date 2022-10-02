@@ -63,7 +63,29 @@ public class SkeletonSpawner : MonoBehaviour
         StartCoroutine(spawnEnemy(enemy, interval, enemyMaxSpawn));
     }
 
-    private Vector3 determineSpawnLocation()
+        private static RaycastHit HitTerrain(float x, float z) {
+        var rayOrigin = new Vector3(x, 0, z);
+        return Physics.Raycast(rayOrigin, Vector3.down, out var hit) ? hit : throw new InvalidOperationException($"Point (x: {x}, z: {z}) isn't in this terrestrial sphere!");
+    }
+
+    private Vector3? determineSpawnLocation() {
+        var spawnX   = Random.Range(xAxisMaxRange, xAxisMaxRange);
+        var spawnZ   = Random.Range(zAxisMaxRange, zAxisMaxRange);
+        var position = transform.position;
+        var spawnPos = HitTerrain(position.x + spawnX, position.z + spawnZ).point;
+
+        const int maxLoops = 5;
+        for (int i = 0; i < maxLoops; i++) {
+            if (spawnIsColliding(spawnPos) == false) {
+                return spawnPos;
+            }
+            
+            spawnPos.x = (this.transform.position.x > spawnPos.x) ? spawnPos.x + xCollisionOffset : spawnPos.x - xCollisionOffset;
+            spawnPos.z = (this.transform.position.z > spawnPos.z) ? spawnPos.z + zCollisionOffset : spawnPos.z - zCollisionOffset;
+        }
+
+        return null;
+    }
     {
         Vector3 spawnPos = new Vector3(Random.Range(xAxisMinRange, xAxisMaxRange), this.transform.position.y + yAxisUpwardDistance, Random.Range(zAxisMinRange, zAxisMaxRange));
 
