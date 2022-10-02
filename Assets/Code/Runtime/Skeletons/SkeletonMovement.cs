@@ -18,7 +18,6 @@ public class SkeletonMovement : MonoBehaviour {
     public SkeletonBodyState myState;
 
     public  CharacterController controller;
-    public  Rigidbody           rb;
     public  LayerMask           WhatIsGround;
     private bool                needStateCheck = false;
     
