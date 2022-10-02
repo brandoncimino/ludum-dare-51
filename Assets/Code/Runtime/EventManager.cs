@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Code.Runtime.Skeletons;
+
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
@@ -38,8 +40,8 @@ public class EventManager : MonoBehaviour {
 
     #region Skeletons
 
-    public event Action SkeletonShouted;
-    public void         OnSkeletonShouted() => SkeletonShouted?.Invoke();
+    public event Action <SkeletonShout> SkeletonShouted;
+    public void         OnSkeletonShouted(SkeletonShout shout) => SkeletonShouted?.Invoke(shout);
 
     #endregion
 
