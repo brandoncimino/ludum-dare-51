@@ -66,16 +66,16 @@ public class SkeletonAI : MonoBehaviour {
         // depending on enemy type and distance to enemy, choose a different AI state
         // override in subclasses, e.g. for ranged skeletons
         
-        DecisionTime = Time.time + dist / 10f;
+        DecisionTime = Time.time + 1f;
         myAIState    = SkeletonAIState.Attacking;
-        Debug.Log(dist);
         
         if (dist > 2f) {
             myAIState = SkeletonAIState.Charging;
         }
         
         if (dist > 15f) {
-            myAIState      = SkeletonAIState.Wandering;
+            myAIState    = SkeletonAIState.Wandering;
+            DecisionTime = Time.time + dist / 5f;
         }
         
     }
