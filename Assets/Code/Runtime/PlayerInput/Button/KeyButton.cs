@@ -4,10 +4,15 @@ using UnityEngine;
 
 namespace Code.Runtime.PlayerInput.Button {
     [Serializable]
-    public class KeyButton : IButton {
-        public KeyCode             Key;
+    public record KeyButton(KeyCode Key) : IButton {
         public IButton.ButtonState State    => Key.ButtonState();
-        public bool                Pressed  => Key.PressedThisFrame();
-        public bool                Released => Key.ReleasedThisFrame();
+        public bool                JustPressed  => Key.Pressed();
+        public bool                JustReleased => Key.Released();
+
+        public static implicit operator KeyButton(KeyCode key) => new(key);
+
+        public static ButtonFallback operator |(KeyButton a, KeyButton b) {
+            return new ButtonFallback(a, b);
+        }
     }
 }

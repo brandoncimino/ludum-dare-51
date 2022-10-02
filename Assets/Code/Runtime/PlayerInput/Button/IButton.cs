@@ -3,7 +3,7 @@ namespace Code.Runtime.PlayerInput.Button {
         public enum ButtonState { Up, Down }
 
         public ButtonState State    { get; }
-        public bool        Pressed  { get; }
-        public bool        Released { get; }
+        public bool        JustPressed  { get; }
+        public bool        JustReleased { get; }
     }
 }
