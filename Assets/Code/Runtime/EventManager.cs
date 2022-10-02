@@ -23,7 +23,7 @@ public class EventManager : MonoBehaviour {
     public void OnGameWon() => GameWon?.Invoke();
 
     #endregion
-
+    
     #region Explosion-Stuff
     public event Action BombExploded;
     public void OnBombExploded() {
@@ -33,6 +33,13 @@ public class EventManager : MonoBehaviour {
         // do the explosion
         BombExploded?.Invoke();
     }
+
+    #endregion
+
+    #region Skeletons
+
+    public event Action SkeletonShouted;
+    public void         OnSkeletonShouted() => SkeletonShouted?.Invoke();
 
     #endregion
 
