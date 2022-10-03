@@ -36,7 +36,13 @@ public class SpawnManager : MonoBehaviour
                 Vector3 spawnerPos = spawners[i].transform.position;
 
                 var distance = Vector3.Distance(spawnerPos, playerPos);
-                closestToFarthestSpawners.Add(distance, spawners[i]);
+                if (!closestToFarthestSpawners.ContainsKey(distance))
+                {
+                    closestToFarthestSpawners.Add(distance, spawners[i]);
+                } else
+                {
+                    closestToFarthestSpawners.Add(distance + 3, spawners[i]);
+                }
             }
 
             if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
@@ -68,7 +74,7 @@ public class SpawnManager : MonoBehaviour
     private int spawnEnemies(SkeletonSpawner spawner, int batchSpawnAmount, int skeletonsSpawned)
     {
         int successfullSpawn = 0;
-        
+
         try
         {
             for (int i = 0; i < batchSpawnAmount; i++)
@@ -78,7 +84,7 @@ public class SpawnManager : MonoBehaviour
                 //if we could determine a spawn position
                 //else if the number spawned in this function is greater than or equal to the number remaining, exit the function
                 int numberSpawned = skeletonsSpawned + successfullSpawn;
-                if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies)
+                if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies && numberSpawned < maxGlobalSkeletonSpawn)
                 {
                     GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
                     spawner.skeletonCount++;
