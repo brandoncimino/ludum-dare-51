@@ -15,50 +15,55 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int maxGlobalSkeletonSpawn = 20;
 
-    private bool spawnersDeactivated = false;
     private float elapsedTime = 0.0f;
 
     void Update()
     {
-        //keeps track of how much time has passed
-        elapsedTime += Time.deltaTime;
-
-        //gets the number of skeletons spawned to limit how many exist in the scene at a given point
-        //creates a sortedlist of spawners that are closest to farthest from the player
-        int skeletonsSpawned = 0;
-        Vector3 playerPos = playerPrefab.transform.position;
-        SortedList<float, SkeletonSpawner> closestToFarthestSpawners = new SortedList<float, SkeletonSpawner>();
-        for (int i = 0; i < spawners.Length; i++)
+        //if the game is paused, then we don't want to run anything 
+        if (!GameManager.current.gamePaused)
         {
-            skeletonsSpawned += spawners[i].skeletonCount;
-            Vector3 spawnerPos = spawners[i].transform.position;
+            //keeps track of how much time has passed
+            elapsedTime += Time.deltaTime;
 
-            var distance = Vector3.Distance(spawnerPos, playerPos);
-            closestToFarthestSpawners.Add(distance, spawners[i]);
-        }
-
-        if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
-        {
-            elapsedTime = 0;
-
-            //loop through each spawner and sapwn enemies
-            //maxSpawnersUsedAtATime indicates the amount of spawners we want to activate at a time
-            int i = 0;
-            foreach(KeyValuePair<float, SkeletonSpawner> kvp in closestToFarthestSpawners)
+            //gets the number of skeletons spawned to limit how many exist in the scene at a given point
+            //creates a sortedlist of spawners that are closest to farthest from the player
+            int skeletonsSpawned = 0;
+            Vector3 playerPos = playerPrefab.transform.position;
+            SortedList<float, SkeletonSpawner> closestToFarthestSpawners = new SortedList<float, SkeletonSpawner>();
+            for (int i = 0; i < spawners.Length; i++)
             {
-                if (i >= maxSpawnersUsedAtATime) {
-                    break;
-                }
+                skeletonsSpawned += spawners[i].skeletonCount;
+                Vector3 spawnerPos = spawners[i].transform.position;
 
-                try
-                {
-                    spawnEnemies(kvp.Value, maxSpawnersUsedAtATime - i);
-                } catch(System.InvalidOperationException e)
-                {
-                    Debug.Log("Couldn't spawn skeleton");
-                }
+                var distance = Vector3.Distance(spawnerPos, playerPos);
+                closestToFarthestSpawners.Add(distance, spawners[i]);
+            }
 
-                i++;
+            if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
+            {
+                elapsedTime = 0;
+
+                //loop through each spawner and sapwn enemies
+                //maxSpawnersUsedAtATime indicates the amount of spawners we want to activate at a time
+                int i = 0;
+                foreach (KeyValuePair<float, SkeletonSpawner> kvp in closestToFarthestSpawners)
+                {
+                    if (i >= maxSpawnersUsedAtATime)
+                    {
+                        break;
+                    }
+
+                    try
+                    {
+                        spawnEnemies(kvp.Value, maxSpawnersUsedAtATime - i);
+                    }
+                    catch (System.InvalidOperationException e)
+                    {
+                        Debug.Log("Couldn't spawn skeleton");
+                    }
+
+                    i++;
+                }
             }
         }
     }

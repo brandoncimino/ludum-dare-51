@@ -60,10 +60,14 @@ namespace Code.Runtime
         
         private void FixedUpdate()
         {
-            BombTickUpdate(Time.deltaTime);
+            //if the game is paused, then we don't want to run anything 
+            if (!GameManager.current.gamePaused)
+            {
+                BombTickUpdate(Time.deltaTime);
 
-            if (transform.position.y <= fallingThroughWorldLimit) {
-                this.transform.position = respawnPoint;
+                if (transform.position.y <= fallingThroughWorldLimit) {
+                    this.transform.position = respawnPoint;
+                }
             }
         }
 
