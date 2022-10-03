@@ -15,12 +15,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int maxGlobalSkeletonSpawn = 20;
 
-    private float elapsedTime = 0.0f;
+    private float      elapsedTime = 0.0f;
+    public  Transform playerGameObject;
 
     void Update()
     {
         //if the game is paused, then we don't want to run anything 
-        if (!GameManager.current.gamePaused)
+        if (!GameManager.current.gamePaused && !GameManager.current.gameEnd)
         {
             //keeps track of how much time has passed
             elapsedTime += Time.deltaTime;
@@ -36,7 +37,13 @@ public class SpawnManager : MonoBehaviour
                 Vector3 spawnerPos = spawners[i].transform.position;
 
                 var distance = Vector3.Distance(spawnerPos, playerPos);
-                closestToFarthestSpawners.Add(distance, spawners[i]);
+                if (!closestToFarthestSpawners.ContainsKey(distance))
+                {
+                    closestToFarthestSpawners.Add(distance, spawners[i]);
+                } else
+                {
+                    closestToFarthestSpawners.Add(distance + 3, spawners[i]);
+                }
             }
 
             if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
@@ -68,7 +75,7 @@ public class SpawnManager : MonoBehaviour
     private int spawnEnemies(SkeletonSpawner spawner, int batchSpawnAmount, int skeletonsSpawned)
     {
         int successfullSpawn = 0;
-        
+
         try
         {
             for (int i = 0; i < batchSpawnAmount; i++)
@@ -78,9 +85,10 @@ public class SpawnManager : MonoBehaviour
                 //if we could determine a spawn position
                 //else if the number spawned in this function is greater than or equal to the number remaining, exit the function
                 int numberSpawned = skeletonsSpawned + successfullSpawn;
-                if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies)
+                if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies && numberSpawned < maxGlobalSkeletonSpawn)
                 {
                     GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
+                    newEnemy.GetComponent<SkeletonAI>().myEnemy = playerGameObject;
                     spawner.skeletonCount++;
                     successfullSpawn++;
                 }

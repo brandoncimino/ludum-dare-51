@@ -25,7 +25,7 @@ public class SkeletonSpawner : MonoBehaviour
         var spawnX = Random.Range(xAxisMinRange, xAxisMaxRange);
         var spawnZ = Random.Range(zAxisMinRange, zAxisMaxRange);
         var position = transform.position;
-        var spawnPos = HitTerrain(position.x + spawnX, position.z + spawnZ).point;
+        var spawnPos = HitTerrain(position.x + spawnX, position.z + spawnZ, this.transform.position.y);
 
         const int maxLoops = 5;
         for (int i = 0; i < maxLoops; i++)
@@ -42,9 +42,11 @@ public class SkeletonSpawner : MonoBehaviour
         return null;
     }
 
-    private static RaycastHit HitTerrain(float x, float z) {
+    private static Vector3 HitTerrain(float x, float z, float y) {
         var rayOrigin = new Vector3(x, 0, z);
-        return Physics.Raycast(rayOrigin, Vector3.down, out var hit) ? hit : throw new System.InvalidOperationException($"Point (x: {x}, z: {z}) isn't in this terrestrial sphere!");
+        Vector3 pos = Physics.Raycast(rayOrigin, Vector3.down, out var hit) ? hit.point : rayOrigin;
+        pos.y = y;
+        return pos;
     }
 
     private bool spawnIsColliding(Vector3 spawnPos)

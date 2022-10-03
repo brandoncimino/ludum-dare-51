@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager current;
     public bool gamePaused { get; private set; } = false;
+    public bool gameEnd { get; private set; } = false;
 
     [SerializeField]
     private int sceneToLoadOnRestart = 2;
@@ -60,14 +61,18 @@ public class GameManager : MonoBehaviour
 
     private void GameWon()
     {
+        gameEnd = true;
         EventManager.current.OnInitializeEndUI();
     }
     
     private void PauseGame()
     {
-        Time.timeScale = 0;
-        gamePaused = true;
-        EventManager.current.OnTogglePauseUI(true);
+        if (!gamePaused)
+        {
+            Time.timeScale = 0;
+            gamePaused = true;
+            EventManager.current.OnTogglePauseUI(true);
+        }
     }
 
     private void UnPauseGame()
@@ -79,14 +84,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("return"))
         {
-            if (!gamePaused)
-            {
-                EventManager.current.OnGamePause();
-            } else {
-                EventManager.current.OnGameUnPause();
-            }
+            EventManager.current.OnGamePause();
         }
     }
 }
