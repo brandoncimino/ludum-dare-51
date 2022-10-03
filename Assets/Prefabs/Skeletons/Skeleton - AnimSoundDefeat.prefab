@@ -54,6 +54,7 @@ MonoBehaviour:
   BundleOfBones: {fileID: 8398557044370565807}
   EnemySkeleton: {fileID: 2584860171091373508}
   Locomoter: {fileID: 4494720432750024892}
+  spawner: {fileID: 0}
   TargetAquisitioner: {fileID: 4494720432750024891}
   PuppetMaster: {fileID: 4494720432750024894}
   cleanUpDelay: 5
@@ -111,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMind: {fileID: 4494720432750024891}
   speed: 1
-  chargeSpeed: 0
+  chargeSpeed: 1.25
   myHead: {fileID: 134797275238099946}
   myState: 0
   myAnimatior: {fileID: 724575850}
