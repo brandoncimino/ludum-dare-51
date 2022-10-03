@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Code.Runtime.Skeletons;
+
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
@@ -29,7 +31,7 @@ public class EventManager : MonoBehaviour {
     public void OnGameUnPause() => GameUnPause?.Invoke();
 
     #endregion
-
+    
     #region Explosion-Stuff
     public event Action BombExploded;
     public void OnBombExploded() {
@@ -39,6 +41,13 @@ public class EventManager : MonoBehaviour {
         // do the explosion
         BombExploded?.Invoke();
     }
+
+    #endregion
+
+    #region Skeletons
+
+    public event Action <SkeletonShout> SkeletonShouted;
+    public void         OnSkeletonShouted(SkeletonShout shout) => SkeletonShouted?.Invoke(shout);
 
     #endregion
 
