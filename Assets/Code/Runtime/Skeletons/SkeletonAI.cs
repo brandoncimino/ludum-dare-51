@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+
 using Random = UnityEngine.Random;
 
 using Code.Runtime.Skeletons;
 
 using UnityEngine;
+
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class SkeletonAI : MonoBehaviour {
 
@@ -167,12 +172,14 @@ public class SkeletonAI : MonoBehaviour {
     /// Only ever run by Animation Event. Creates a Raycast from the skeleton to the player, damaging the player if they
     /// are close enough 
     /// </summary>
-    void SkeleThwack() {
-        var attackRay = Physics.Raycast(transform.position, transform.position - myEnemy.position, attackDistance, playerMask);
-        if (attackRay) {
-            //Damage Player
-            Debug.Log("Player has been thwacked!");
-        }
+    public void SkeleThwack() {
+        Debug.Log("Attempting to thwack");
+        
+        
+
+        //Damage Player
+        Debug.Log("Player has been thwacked!");
+        EventManager.current.OnPlayerTakeDamage();
     }
     
 }
