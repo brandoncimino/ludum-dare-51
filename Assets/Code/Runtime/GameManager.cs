@@ -50,12 +50,4 @@ public class GameManager : MonoBehaviour
     {
         EventManager.current.OnInitializeEndUI();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            EventManager.current.OnGameWon();
-        }
-    }
 }
