@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         EventManager.current.GameUnPause += UnPauseGame;
 
         //ensures the Puase menu will always be deactivated on game start up
-        //EventManager.current.OnGameUnPause();
+        EventManager.current.OnGameUnPause();
     }
     
     private void OnDestroy()

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 698316844245273098}
   - component: {fileID: 1905994684896198520}
   - component: {fileID: 6327471970191697573}
+  - component: {fileID: 698316843064099944}
+  - component: {fileID: 698316843064099945}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -35,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &698316844245273101
 MonoBehaviour:
@@ -121,6 +123,7 @@ MonoBehaviour:
   resumeGameButton: {fileID: 0}
   quitGameButton: {fileID: 0}
   healthBar: {fileID: 0}
+  HUD: {fileID: 0}
   fullSprite: {fileID: 21300000, guid: 3e61c00b9ef1140d5a68a25a5ec6b7b0, type: 3}
   quarterSprite: {fileID: 21300000, guid: 00eda9a1508d94e4a9e90aa4e25ce788, type: 3}
   halfSprite: {fileID: 21300000, guid: 96d2e50bcb4f44d83a6d55861446b648, type: 3}
@@ -138,3 +141,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfOranges: 5
+--- !u!114 &698316843064099944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698316844245273097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &698316843064099945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698316844245273097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
