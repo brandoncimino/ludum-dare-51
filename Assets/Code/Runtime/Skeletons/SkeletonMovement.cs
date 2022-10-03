@@ -33,18 +33,21 @@ public class SkeletonMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        //if the game is paused, then we don't want to run anything 
+        if (!GameManager.current.gamePaused)
+        {
+            if (needStateCheck) {
+                CheckState();
+            }
 
-        if (needStateCheck) {
-            CheckState();
+            // rotate body towards the direction the head is looking
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, myHead.rotation,    2);
+            // counterbalance head rotation
+            myHead.rotation    = Quaternion.RotateTowards(myHead.rotation,    transform.rotation, 2);
+
+            // move forwards
+            controller.SimpleMove(speed * transform.forward);
         }
-        
-        // rotate body towards the direction the head is looking
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, myHead.rotation,    2);
-        // counterbalance head rotation
-        myHead.rotation    = Quaternion.RotateTowards(myHead.rotation,    transform.rotation, 2);
-        
-        // move forwards
-        controller.SimpleMove(speed * transform.forward);
     }
 
     public void GetMentalCommands() {
