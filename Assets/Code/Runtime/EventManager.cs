@@ -24,6 +24,12 @@ public class EventManager : MonoBehaviour {
     public event Action GameWon;
     public void OnGameWon() => GameWon?.Invoke();
 
+    public event Action GamePause;
+    public void OnGamePause() => GamePause?.Invoke();
+
+    public event Action GameUnPause;
+    public void OnGameUnPause() => GameUnPause?.Invoke();
+
     #endregion
     
     #region Explosion-Stuff
@@ -67,6 +73,11 @@ public class EventManager : MonoBehaviour {
     #region Initialize UI
     public event Action<int, int> InitializeUI;
     public void OnInitializeUI(int waveCount, int killCount) => InitializeUI?.Invoke(waveCount, killCount);
+    #endregion
+
+    #region Toggle Pause Menu UI
+    public event Action<bool> TogglePauseUI;
+    public void OnTogglePauseUI(bool setActive) => TogglePauseUI?.Invoke(setActive);
     #endregion
 
 }
