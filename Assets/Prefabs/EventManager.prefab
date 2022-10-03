@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 815523163532156239}
   - component: {fileID: 815523163532156237}
   - component: {fileID: 815523163532156236}
+  - component: {fileID: 6690675818389037473}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &815523163532156233
 MonoBehaviour:
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e506fbf82dca475da7f3b23a6b42d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoadOnRestart: 2
 --- !u!114 &815523163532156237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,3 +90,26 @@ MonoBehaviour:
   numberOfWavesText: {fileID: 0}
   numberEnemiesRemain: {fileID: 0}
   endScreen: {fileID: 0}
+  inputField: {fileID: 0}
+  scoreBoardField: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  resumeGameButton: {fileID: 0}
+  quitGameButton: {fileID: 0}
+  healthBar: {fileID: 0}
+  fullSprite: {fileID: 21300000, guid: 3e61c00b9ef1140d5a68a25a5ec6b7b0, type: 3}
+  quarterSprite: {fileID: 21300000, guid: 00eda9a1508d94e4a9e90aa4e25ce788, type: 3}
+  halfSprite: {fileID: 21300000, guid: 96d2e50bcb4f44d83a6d55861446b648, type: 3}
+  threeQuarterSprite: {fileID: 21300000, guid: 8324d6ab5e05448738dcc9108f6de767, type: 3}
+--- !u!114 &6690675818389037473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815523163532156232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5686024324a00a4bb9601bddafd7e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfOranges: 5

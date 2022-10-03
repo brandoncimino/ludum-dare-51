@@ -81,12 +81,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            if (!gamePaused)
-            {
-                EventManager.current.OnGamePause();
-            } else {
-                EventManager.current.OnGameUnPause();
-            }
+            EventManager.current.OnPlayerTakeDamage();
         }
     }
 }
