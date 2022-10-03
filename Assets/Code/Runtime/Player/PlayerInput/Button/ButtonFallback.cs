@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using BrandonUtils.Standalone.Collections;
-
 namespace Code.Runtime.PlayerInput.Button {
     public record ButtonFallback(IEnumerable<IButton> Buttons) : IButton, IEnumerable<IButton> {
         private readonly IButton[]            _buttons = Buttons.ToArray();
         public           IEnumerable<IButton> Buttons => _buttons.AsEnumerable();
-        
+
         public IButton.ButtonState State       => Buttons.Any(static k => k.JustPressed) ? IButton.ButtonState.Down : IButton.ButtonState.Up;
         public bool                JustPressed => Buttons.Any(static k => k.JustPressed);
         /// <summary>
@@ -22,7 +20,7 @@ namespace Code.Runtime.PlayerInput.Button {
         public bool JustReleased {
             get {
                 bool anyReleased = false;
-                
+
                 foreach (var k in Buttons) {
                     if (k.State == IButton.ButtonState.Down) {
                         return false;

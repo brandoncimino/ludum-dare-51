@@ -1,8 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
-using System.Threading;
-
-using UnityEditor.UI;
 
 using UnityEngine;
 
@@ -24,7 +20,7 @@ namespace Code.Runtime {
             component = gameObject.GetComponentInChildren<T>();
             return ReferenceEquals(component, null) == false;
         }
-        
+
         public static T RequireComponent<T>(this MonoBehaviour gameObject, bool includeChildren = false) where T : notnull {
             if (gameObject.TryGetComponent(out T comp) ||
                 gameObject.TryGetComponentInChildren(out comp)) {
@@ -38,23 +34,23 @@ namespace Code.Runtime {
     [Flags]
     public enum Axes {
         None = 0,
-        X = 1,
-        Y = 2,
-        Z = 4
-    } 
+        X    = 1,
+        Y    = 2,
+        Z    = 4
+    }
 
     public readonly struct Nector3 {
-        public Nector3(float?                           x, float? y, float? z) {
+        public Nector3(float? x, float? y, float? z) {
             this.X = x;
             this.Y = y;
             this.Z = z;
         }
 
-        public                          float? X            { get; init; }
-        public                          float? Y            { get; init; }
-        public                          float? Z            { get; init; }
+        public float? X { get; init; }
+        public float? Y { get; init; }
+        public float? Z { get; init; }
 
-        public                          Vector3 ApplyTo(Vector3 target) => new(X    ?? target.x, Y ?? target.y, Z ?? target.z);
+        public Vector3 ApplyTo(Vector3 target) => new(X ?? target.x, Y ?? target.y, Z ?? target.z);
 
         public static Nector3 Of(Vector3 v3, Axes axes) => new(
             axes.HasFlag(Axes.X) ? v3.x : null,
@@ -69,7 +65,7 @@ namespace Code.Runtime {
         }
 
         #region Conversions
-        
+
         public static implicit operator Vector3(Nector3                        v3)    => new(v3.X ?? 0, v3.Y ?? 0, v3.Z ?? 0);
         public static implicit operator Nector3((float x, float y, float z)    tuple) => new(tuple.x, tuple.y, tuple.z);
         public static implicit operator Nector3((float? x, float? y, float? z) tuple) => new(tuple.x, tuple.y, tuple.z);

@@ -2,8 +2,6 @@ using System;
 
 using Code.Runtime.PlayerInput.Stick;
 
-using UnityEngine;
-
 namespace Code.Runtime.PlayerInput {
     [Serializable]
     public record InputManagerStick(InputManagerAxis Horizontal, InputManagerAxis Vertical) : IJoystick {

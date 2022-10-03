@@ -1,7 +1,5 @@
 using System;
 
-using UnityEngine;
-
 namespace Code.Runtime {
     /// <summary>
     /// Apply to any <see cref="System.Reflection.FieldInfo">field</see> or <see cref="System.Reflection.PropertyInfo">property</see> to have
