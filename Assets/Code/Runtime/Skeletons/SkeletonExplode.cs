@@ -10,7 +10,7 @@ namespace Code.Runtime.Skeletons
         public SkeletonMovement    Locomoter;
         public SkeletonAI          TargetAquisitioner;
         public CharacterController PuppetMaster;
-        public float cleanUpDelay;
+        public float cleanUpDelay = 5f;
 
         public List<Rigidbody> SeparatedBoneRigidbodies;
 
