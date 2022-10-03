@@ -20,10 +20,11 @@ public class SkeletonMovement : MonoBehaviour {
     public SkeletonBodyState myState;
     public Animator          myAnimatior;
 
-    public  CharacterController controller;
-    public  LayerMask           WhatIsGround;
-    private bool                needStateCheck = false;
-    
+    public                  CharacterController controller;
+    public                  LayerMask           WhatIsGround;
+    private                 bool                needStateCheck = false;
+    private static readonly int                 State          = Animator.StringToHash("State");
+
     // Start is called before the first frame update
     void Start() {
         myState = SkeletonBodyState.Walking;
@@ -64,22 +65,22 @@ public class SkeletonMovement : MonoBehaviour {
         {
             case SkeletonAIState.Charging:
                 myState = SkeletonBodyState.Running;
-                myAnimatior.SetInteger("State", 0);
+                myAnimatior.SetInteger(State, 0);
                 speed   = chargeSpeed;
                 break;
             case SkeletonAIState.Attacking:
                 myState = SkeletonBodyState.Attacking;
-                myAnimatior.SetInteger("State", 2);
+                myAnimatior.SetInteger(State, 2);
                 speed   = 0.1f;
                 break;
             case SkeletonAIState.Retreating:
                 myState = SkeletonBodyState.Running;
-                myAnimatior.SetInteger("State", 0);
+                myAnimatior.SetInteger(State, 0);
                 speed   = 10f;
                 break;
             default:
                 myState = SkeletonBodyState.Walking;
-                myAnimatior.SetInteger("State", 0);
+                myAnimatior.SetInteger(State, 0);
                 speed   = 2f;
                 break;
         }

@@ -1896,6 +1896,10 @@ PrefabInstance:
       propertyPath: targetBomb
       value: 
       objectReference: {fileID: 1748606406}
+    - target: {fileID: 1057724333520398787, guid: 6caaf9aefd2c7b24fa31c6e05ac3ffd0, type: 3}
+      propertyPath: explosionBonusUpwardForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1628783796662707345, guid: 6caaf9aefd2c7b24fa31c6e05ac3ffd0, type: 3}
       propertyPath: m_Name
       value: Player_1
@@ -4912,7 +4916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 698316844245273099, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
       propertyPath: enemyPool
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 698316844245273100, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
       propertyPath: playerPrefab
