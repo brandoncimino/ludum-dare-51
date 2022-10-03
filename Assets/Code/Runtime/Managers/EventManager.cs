@@ -100,6 +100,12 @@ public class EventManager : MonoBehaviour {
 
     #endregion
 
+    #region Update Bomber UI
+    public event Action<float> UpdateBomberUI;
+    public void OnUpdateBomberUI(float time) => UpdateBomberUI?.Invoke(time);
+
+    #endregion
+
     //Player Events
 
     #region Take Damage

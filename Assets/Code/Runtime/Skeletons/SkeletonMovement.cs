@@ -14,6 +14,7 @@ using Slider = UnityEngine.UI.Slider;
 public class SkeletonMovement : MonoBehaviour {
     public SkeletonAI   myMind;
     public float        speed;
+    public float chargeSpeed;
     public Transform    myHead;
     public SkeletonBodyState myState;
 
@@ -60,7 +61,7 @@ public class SkeletonMovement : MonoBehaviour {
         {
             case SkeletonAIState.Charging:
                 myState = SkeletonBodyState.Running;
-                speed   = 10f;
+                speed   = chargeSpeed;
                 break;
             case SkeletonAIState.Attacking:
                 myState = SkeletonBodyState.Attacking;

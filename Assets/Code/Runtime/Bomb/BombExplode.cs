@@ -80,6 +80,8 @@ namespace Code.Runtime
                 //Kaboom! 💥
                 EventManager.current.OnBombExploded();
             }
+
+            EventManager.current.OnUpdateBomberUI(WickRemaining);
         }
 
         //Detonates the bomb
