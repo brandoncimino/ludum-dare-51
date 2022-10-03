@@ -67,9 +67,12 @@ public class GameManager : MonoBehaviour
     
     private void PauseGame()
     {
-        Time.timeScale = 0;
-        gamePaused = true;
-        EventManager.current.OnTogglePauseUI(true);
+        if (!gamePaused)
+        {
+            Time.timeScale = 0;
+            gamePaused = true;
+            EventManager.current.OnTogglePauseUI(true);
+        }
     }
 
     private void UnPauseGame()
@@ -79,11 +82,11 @@ public class GameManager : MonoBehaviour
         EventManager.current.OnTogglePauseUI(false);
     }
 
-    /*private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown("space"))
         {
-            EventManager.current.OnPlayerTakeDamage();
+            EventManager.current.OnGamePause();
         }
-    }*/
+    }
 }
