@@ -1,0 +1,23 @@
+= Build Diary
+
+- `BuildAutomator.ps1` needs work:
+** Should be built out into an actual `.psm1` module file
+
+== Build Error #1
+- Unused imports caused build failures 
+** Need to make sure everybody has the "Optimize `using` Directives" commit option enabled
+
+== Build Error #2
+
+link:build_error_2.txt[]
+
+[source,text,lineno]
+----
+include::build_error_2.txt[lines=3]
+----
+
+> Error was caused by an bug in the `brandon-utils` version being used, `ceef673795c57747aeb15f70765b853548e028e4`. 
+>
+> The `BrandonUtils.Testing` assembly wasn't marked as `Editor`-only. 
+
+NOTE: This was a repeat of an issue encountered during link:https://github.com/brandoncimino/ludum-dare-47#problems-that-arose-during-the-build-process[ludum-dare-47]. It arose again because I didn't properly update the dependencies in the `unity-template` project.
