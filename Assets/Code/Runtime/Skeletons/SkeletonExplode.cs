@@ -38,8 +38,7 @@ namespace Code.Runtime.Skeletons
 
         private void CleanUp()
         {
-            Destroy(BundleOfBones);
-            Destroy(EnemySkeleton);
+            Destroy(this.gameObject);
         }
     }
 }
