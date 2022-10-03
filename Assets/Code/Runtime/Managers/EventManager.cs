@@ -94,4 +94,18 @@ public class EventManager : MonoBehaviour {
 
     #endregion
 
+    #region Update Health Bar
+    public event Action<int> UpdateHealthBar;
+    public void OnUpdateHealthBar(int totalHealth) => UpdateHealthBar?.Invoke(totalHealth);
+
+    #endregion
+
+    //Player Events
+
+    #region Take Damage
+    public event Action PlayerTakeDamage;
+    public void OnPlayerTakeDamage() => PlayerTakeDamage?.Invoke();
+
+    #endregion
+
 }

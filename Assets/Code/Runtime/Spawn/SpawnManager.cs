@@ -20,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         //if the game is paused, then we don't want to run anything 
-        if (!GameManager.current.gamePaused)
+        if (!GameManager.current.gamePaused && !GameManager.current.gameEnd)
         {
             //keeps track of how much time has passed
             elapsedTime += Time.deltaTime;

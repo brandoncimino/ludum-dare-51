@@ -22,16 +22,23 @@ namespace Code.Runtime {
         private float Pitch;
 
         private void LateUpdate() {
-            Cursor.visible   = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (!GameManager.current.gamePaused && !GameManager.current.gameEnd)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
 
-            Yaw   += DualStick.LookStick.Horizontal.Position * AimConfig.Horizontal.RotationSpeed * Time.deltaTime;
-            Pitch += DualStick.LookStick.Vertical.Position   * AimConfig.Vertical.RotationSpeed   * Time.deltaTime;
+                Yaw += DualStick.LookStick.Horizontal.Position * AimConfig.Horizontal.RotationSpeed * Time.deltaTime;
+                Pitch += DualStick.LookStick.Vertical.Position * AimConfig.Vertical.RotationSpeed * Time.deltaTime;
 
-            Neck.localEulerAngles             = new Vector3(0,      Yaw, 0);
-            Camera.transform.localEulerAngles = new Vector3(-Pitch, 0,   0);
+                Neck.localEulerAngles = new Vector3(0, Yaw, 0);
+                Camera.transform.localEulerAngles = new Vector3(-Pitch, 0, 0);
 
-            // Camera.transform.localRotation = QuatToRotation(Pitch, Yaw);
+                // Camera.transform.localRotation = QuatToRotation(Pitch, Yaw);
+            } else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         private static Quaternion QuatToRotation(float pitch, float yaw) {
