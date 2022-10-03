@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("return"))
         {
             EventManager.current.OnGamePause();
         }
