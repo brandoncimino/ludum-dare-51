@@ -8,6 +8,7 @@ namespace Code.Runtime.Skeletons
         public GameObject          BundleOfBones;
         public GameObject          EnemySkeleton;
         public SkeletonMovement    Locomoter;
+        public SkeletonSpawner spawner;
         public SkeletonAI          TargetAquisitioner;
         public CharacterController PuppetMaster;
         public float cleanUpDelay = 5f;
@@ -15,6 +16,9 @@ namespace Code.Runtime.Skeletons
         public List<Rigidbody> SeparatedBoneRigidbodies;
 
         public void Blasted(Vector3 bombPos) {
+            EventManager.current.OnKillEnemy();
+            spawner.decrimentSkeletonCount();
+            Invoke("CleanUp", cleanUpDelay);
             Debug.Log("Skeleton should crumble");
             
             //Skeleton is dead.
@@ -32,8 +36,6 @@ namespace Code.Runtime.Skeletons
             {
                 boneRigidbody.AddExplosionForce(50f,bombPos,20f);
             }
-
-            Invoke("CleanUp", cleanUpDelay);
         }
 
         private void CleanUp()

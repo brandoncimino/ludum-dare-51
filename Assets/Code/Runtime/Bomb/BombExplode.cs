@@ -120,8 +120,8 @@ namespace Code.Runtime
             myRigidbody.AddForce(Random.insideUnitSphere.normalized * 1000);
             myAudio.Play();
             KaboomFX.SetActive(true);
-            KaboomFX.transform.localScale = new Vector3(explosionRadius/2, explosionRadius/2, explosionRadius/2);
-            Invoke(nameof(DeactivateKaboomFX),.1f);
+            KaboomFX.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+            Invoke(nameof(DeactivateKaboomFX),.2f);
         }
 
         private void DeactivateKaboomFX()

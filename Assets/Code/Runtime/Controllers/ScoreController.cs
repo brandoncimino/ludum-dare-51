@@ -50,7 +50,7 @@ public class ScoreController : MonoBehaviour
     //if the number of enemies is 0, then we've cleared the wave
     private void OnEnemyKill()
     {
-        numOfEnemies -= 1;
+        numOfEnemies -= 1; ;
 
         if (numOfEnemies <= 0)
         {
