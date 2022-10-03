@@ -6981,7 +6981,7 @@ Transform:
   - {fileID: 3174380848112627307}
   - {fileID: 3313170282378625342}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8223927462399960352
 Rigidbody:
@@ -7040,6 +7040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: 20
+  respawnPoint: {x: 0, y: 10, z: 0}
+  fallingThroughWorldLimit: -100
   BlastableLayer:
     serializedVersion: 2
     m_Bits: 64

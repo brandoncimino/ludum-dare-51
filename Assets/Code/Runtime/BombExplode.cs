@@ -17,6 +17,8 @@ namespace Code.Runtime
         
 
         public float explosionRadius;
+        public Vector3 respawnPoint;
+        public int fallingThroughWorldLimit = -100;
 
         private readonly Lazy<Rigidbody>   _myRigidbody;
         private          Rigidbody         myRigidbody => _myRigidbody.Value;
@@ -58,7 +60,15 @@ namespace Code.Runtime
         
         private void FixedUpdate()
         {
-            BombTickUpdate(Time.deltaTime);
+            //if the game is paused, then we don't want to run anything 
+            if (!GameManager.current.gamePaused)
+            {
+                BombTickUpdate(Time.deltaTime);
+
+                if (transform.position.y <= fallingThroughWorldLimit) {
+                    this.transform.position = respawnPoint;
+                }
+            }
         }
 
         //Called every frame, this 
