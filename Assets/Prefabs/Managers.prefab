@@ -76,6 +76,7 @@ MonoBehaviour:
   secondsBetweenSpawn: 7
   maxSpawnersUsedAtATime: 3
   maxGlobalSkeletonSpawn: 20
+  playerGameObject: {fileID: 0}
 --- !u!114 &698316844245273099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3eb83ec4ad1886419c5b77cee01bc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPool: 25
-  increaseEnemyPoolByPercent: 0.95
+  enemyPool: 10
+  increaseEnemyPoolByPercent: 0.75
 --- !u!114 &698316844245273098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfWavesText: {fileID: 0}
   numberEnemiesRemain: {fileID: 0}
+  bombTimer: {fileID: 0}
   endScreen: {fileID: 0}
   inputField: {fileID: 0}
   scoreBoardField: {fileID: 0}
