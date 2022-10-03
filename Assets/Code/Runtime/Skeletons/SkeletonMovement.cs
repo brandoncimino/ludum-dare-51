@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,11 +13,12 @@ using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 
 public class SkeletonMovement : MonoBehaviour {
-    public SkeletonAI   myMind;
-    public float        speed;
-    public float chargeSpeed;
-    public Transform    myHead;
+    public SkeletonAI        myMind;
+    public float             speed;
+    public float             chargeSpeed;
+    public Transform         myHead;
     public SkeletonBodyState myState;
+    public Animator          myAnimatior;
 
     public  CharacterController controller;
     public  LayerMask           WhatIsGround;
@@ -25,6 +27,7 @@ public class SkeletonMovement : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         myState = SkeletonBodyState.Walking;
+        myAnimatior.SetInteger("State",0);
         // subscribe to stufff
     }
     
@@ -61,18 +64,22 @@ public class SkeletonMovement : MonoBehaviour {
         {
             case SkeletonAIState.Charging:
                 myState = SkeletonBodyState.Running;
+                myAnimatior.SetInteger("State", 0);
                 speed   = chargeSpeed;
                 break;
             case SkeletonAIState.Attacking:
                 myState = SkeletonBodyState.Attacking;
+                myAnimatior.SetInteger("State", 2);
                 speed   = 0.1f;
                 break;
             case SkeletonAIState.Retreating:
                 myState = SkeletonBodyState.Running;
+                myAnimatior.SetInteger("State", 0);
                 speed   = 10f;
                 break;
             default:
                 myState = SkeletonBodyState.Walking;
+                myAnimatior.SetInteger("State", 0);
                 speed   = 2f;
                 break;
         }
