@@ -10,6 +10,7 @@ namespace Code.Runtime.Skeletons
         public SkeletonMovement    Locomoter;
         public SkeletonAI          TargetAquisitioner;
         public CharacterController PuppetMaster;
+        public float cleanUpDelay;
 
         public List<Rigidbody> SeparatedBoneRigidbodies;
 
@@ -31,6 +32,14 @@ namespace Code.Runtime.Skeletons
             {
                 boneRigidbody.AddExplosionForce(50f,bombPos,20f);
             }
+
+            Invoke("CleanUp", cleanUpDelay);
+        }
+
+        private void CleanUp()
+        {
+            Destroy(BundleOfBones);
+            Destroy(EnemySkeleton);
         }
     }
 }
