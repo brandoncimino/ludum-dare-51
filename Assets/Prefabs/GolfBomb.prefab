@@ -318,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5498913436703552632
 Transform:
   m_ObjectHideFlags: 0
@@ -5927,7 +5927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7320535231032036987
 Transform:
   m_ObjectHideFlags: 0
@@ -5971,7 +5971,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -8285085358202251203, guid: 45b309ae4608c68489b76438d176e243, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6109,7 +6109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3313170282378625342
 Transform:
   m_ObjectHideFlags: 0
@@ -7131,7 +7131,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 15
   m_Drag: 0
-  m_AngularDrag: 0.6
+  m_AngularDrag: 2.04
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -7144,7 +7144,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9142355235318027997}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 229fe93cd88eb3f4cb4792b93b914835, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7162,13 +7162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ee8e11a2aa4b02a8c07c5d672e8b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 20
+  explosionRadius: 10
   respawnPoint: {x: 0, y: 10, z: 0}
   fallingThroughWorldLimit: -100
   BlastableLayer:
     serializedVersion: 2
     m_Bits: 64
-  KaboomFX: {fileID: 0}
+  KaboomFX: {fileID: 3981671617175524546}
 --- !u!82 &3347286192854140908
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7192,7 +7192,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7225,7 +7225,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
