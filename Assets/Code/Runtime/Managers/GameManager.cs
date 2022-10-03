@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int sceneToLoadOnRestart = 2;
-    [SerializeField]
-    private GameObject player;
 
     private void Awake() {
         current = this;
