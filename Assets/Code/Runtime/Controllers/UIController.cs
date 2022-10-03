@@ -137,7 +137,7 @@ public class UIController : MonoBehaviour
                 changeHealthSprite(totalHealth, children, threeQuarterSprite);
                 break;
             default:
-                // code block
+                // do nothing
                 break;
         }
     }
@@ -150,6 +150,7 @@ public class UIController : MonoBehaviour
         int healthUnitIndex = (int)Mathf.Ceil(totalHealth / 4);
         GameObject healthUnit = children[healthUnitIndex];
         Image m_Image = healthUnit.GetComponent<Image>();
+
         m_Image.sprite = sprite;
     }
 }

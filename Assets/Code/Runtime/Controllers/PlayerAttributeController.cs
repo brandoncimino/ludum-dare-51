@@ -25,7 +25,7 @@ public class PlayerAttributeController : MonoBehaviour
         EventManager.current.PlayerTakeDamage -= PlayerTakeDamage;
     }
 
-    private void TakeDamage() 
+    private void PlayerTakeDamage() 
     {
         totalHealth -= 1;
 
