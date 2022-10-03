@@ -15,7 +15,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int maxGlobalSkeletonSpawn = 20;
 
-    private float elapsedTime = 0.0f;
+    private float      elapsedTime = 0.0f;
+    public  Transform playerGameObject;
 
     void Update()
     {
@@ -87,6 +88,7 @@ public class SpawnManager : MonoBehaviour
                 if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies && numberSpawned < maxGlobalSkeletonSpawn)
                 {
                     GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
+                    newEnemy.GetComponent<SkeletonAI>().myEnemy = playerGameObject;
                     spawner.skeletonCount++;
                     successfullSpawn++;
                 }

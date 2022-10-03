@@ -61,7 +61,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -8719627423098277545}
-    m_Duration: 1.9833333492279053
+    m_Duration: 2
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2929639134545153696}
     m_EaseInDuration: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
     m_ExposedParameterNames: []
     m_AnimationCurves: {fileID: 0}
     m_Recordable: 0
-    m_PostExtrapolationMode: 0
+    m_PostExtrapolationMode: 2
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
