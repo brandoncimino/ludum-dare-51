@@ -582,6 +582,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1628783796662707345, guid: 6caaf9aefd2c7b24fa31c6e05ac3ffd0, type: 3}
   m_PrefabInstance: {fileID: 694850687}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &694850697 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1628783796662707437, guid: 6caaf9aefd2c7b24fa31c6e05ac3ffd0, type: 3}
+  m_PrefabInstance: {fileID: 694850687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &808415992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1429,6 +1434,7 @@ GameObject:
   - component: {fileID: 1897865898}
   - component: {fileID: 1897865897}
   - component: {fileID: 1897865896}
+  - component: {fileID: 1897865899}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -1515,6 +1521,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897865894}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1897865899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897865894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b02851a0e3ff24d9fa40971f3ef542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveAmplitude: 1
+  waveHertz: 0
+  elapsedTime: 0
+  modifiedHeight: 0
 --- !u!1001 &1898511337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1697,6 +1719,10 @@ PrefabInstance:
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 694850691}
+    - target: {fileID: 698316844245273100, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
+      propertyPath: playerGameObject
+      value: 
+      objectReference: {fileID: 694850697}
     - target: {fileID: 698316844245273100, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
       propertyPath: spawners.Array.data[0]
       value: 
