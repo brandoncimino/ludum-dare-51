@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: skeletonPirate01_animation_run_v001.ma
-//Last modified: Sun, Oct 02, 2022 09:47:55 PM
+//Last modified: Sun, Oct 02, 2022 09:58:48 PM
 //Codeset: 1252
 file -rdi 1 -ns "skeletonPirate_rig_v01" -rfn "skeletonPirate_rig_v01RN" -op
 		 "v=0;" -typ "mayaAscii" "C:/Users/chezm/Documents/LudumDare/ludumDare2022/ludum-dare-51/Assets/Art/Visuals/Char/skeletonPirate_01/publish/v1/skeletonPirate_rig_v01.ma";
@@ -16,19 +16,19 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202202161415-df43006fd3";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 22000)";
-fileInfo "UUID" "D93D0621-4530-AA17-B3DE-ED9E88225963";
+fileInfo "UUID" "DB57E700-45B8-627B-F3F9-AE9CE37E55FC";
 createNode transform -s -n "persp";
 	rename -uid "16B527F0-42E7-A03F-9D3F-C4AFDAF46153";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 35799.151607434425 18779.975477649841 48727.848072012872 ;
-	setAttr ".r" -type "double3" -8.1383527287514514 -1765.0000000002728 -1.4560276249814982e-15 ;
+	setAttr ".t" -type "double3" -23637.888633343275 10133.306193426562 35053.827809001683 ;
+	setAttr ".r" -type "double3" -3.3383527287535228 -1834.2000000002379 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "19C53A29-4800-8F2B-2EF6-B7A58620C21F";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
 	setAttr ".ncp" 1;
 	setAttr ".fcp" 1000000000;
-	setAttr ".coi" 61216.560586878943;
+	setAttr ".coi" 42195.970363615037;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -4382,8 +4382,8 @@ createNode animCurveTL -n "L_pinky_ctrl_01_translateX";
 	setAttr -s 10 ".kox[9]"  1;
 	setAttr -s 10 ".koy[9]"  0;
 select -ne :time1;
-	setAttr ".o" 1;
-	setAttr ".unw" 1;
+	setAttr ".o" 13;
+	setAttr ".unw" 13;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
