@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
-//Name: tricorne_mdl_v001.ma
-//Last modified: Sun, Oct 02, 2022 11:27:09 PM
+//Name: eyepatch_mdl_v001.ma
+//Last modified: Sun, Oct 02, 2022 11:27:38 PM
 //Codeset: 1252
 file -rdi 1 -ns "skull_mdl_v001" -rfn "skull_mdl_v001RN" -op "mo=1" -typ "OBJexport"
 		 "C:/Users/chezm/Documents/LudumDare/ludumDare2022/ludum-dare-51/Assets/Art/Visuals/Props/skull/publish/skull_mdl_v001.obj";
@@ -14,7 +14,7 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202202161415-df43006fd3";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 22000)";
-fileInfo "UUID" "4790C2B5-4F2F-B634-1BE4-7B9912AA52A3";
+fileInfo "UUID" "86735F37-4FC7-FE87-D2A8-F2BC93A1EABD";
 createNode transform -s -n "persp";
 	rename -uid "CD21EAFD-4B53-33AC-F954-66AA0CD526A7";
 	setAttr ".v" no;
@@ -636,4 +636,4 @@ connectAttr "lambert3SG.pa" ":renderPartition.st" -na;
 connectAttr "tricorn_black_Mat.msg" ":defaultShaderList1.s" -na;
 connectAttr "tricorne_gold_Mat.msg" ":defaultShaderList1.s" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-// End of tricorne_mdl_v001.ma
+// End of eyepatch_mdl_v001.ma
