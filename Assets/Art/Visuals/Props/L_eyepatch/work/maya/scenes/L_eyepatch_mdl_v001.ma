@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: L_eyepatch_mdl_v001.ma
-//Last modified: Sun, Oct 02, 2022 11:41:13 PM
+//Last modified: Sun, Oct 02, 2022 11:47:14 PM
 //Codeset: 1252
 file -rdi 1 -ns "skull_mdl_v001" -rfn "skull_mdl_v001RN" -op "mo=1" -typ "OBJexport"
 		 "C:/Users/chezm/Documents/LudumDare/ludumDare2022/ludum-dare-51/Assets/Art/Visuals/Props/skull/publish/skull_mdl_v001.obj";
@@ -15,18 +15,18 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202202161415-df43006fd3";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 22000)";
-fileInfo "UUID" "61B5EBE4-48AD-AC26-999B-0CA186B890A9";
+fileInfo "UUID" "C79CBE52-4B23-F9D1-6D03-71AAFDF04944";
 createNode transform -s -n "persp";
 	rename -uid "CD21EAFD-4B53-33AC-F954-66AA0CD526A7";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -53.939806006359618 -13.114216897472922 4872.6435343369994 ;
-	setAttr ".r" -type "double3" 0.26164727016209055 -364.99999999990047 1.558937443185525e-18 ;
+	setAttr ".t" -type "double3" -2203.6231606912356 337.75395959734317 5183.6519074121788 ;
+	setAttr ".r" -type "double3" -3.3383527298378048 -386.99999999989791 1.1155062403856438e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "F6D8E9DF-4272-A842-417B-FEAB4916B8F7";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
 	setAttr ".fcp" 100000000;
-	setAttr ".coi" 4736.1834467097979;
+	setAttr ".coi" 5653.90768446736;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
