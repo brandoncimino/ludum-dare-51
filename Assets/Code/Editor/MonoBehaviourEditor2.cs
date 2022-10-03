@@ -2,8 +2,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-using BrandonUtils.Editor;
-
 using Code.Runtime;
 
 using UnityEditor;
@@ -17,21 +15,20 @@ namespace Code.Editor {
     [CustomEditor(typeof(FirstPersonLooking), true)]
     public class MonoBehaviourEditor2 : UnityEditor.Editor {
         private static readonly MemberFilter AnnotatedFilter = (info, attributeType) => info.IsDefined(attributeType as Type ?? throw new InvalidOperationException($"The {nameof(MemberFilter)} variable [{attributeType}] is not an {nameof(Attribute)}!"));
-        
+
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
-            const MemberTypes  types     = MemberTypes.Field     | MemberTypes.Property;
-            const BindingFlags binder    = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetProperty | BindingFlags.GetField;
+            const MemberTypes  types  = MemberTypes.Field     | MemberTypes.Property;
+            const BindingFlags binder = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetProperty | BindingFlags.GetField;
 
             var variables = target.GetType().FindMembers(types, binder, AnnotatedFilter, typeof(ShowInEditorAttribute));
 
             foreach (var vInfo in variables.Where(it => it.IsDefined(typeof(ShowInEditorAttribute)))) {
-                
                 EditorGUILayout.TextArea(
                     $"[ <i>{GetValueType(vInfo).Name}</i> ] <b>{vInfo.Name}</b> = {GetValueOrException(vInfo)}",
                     new GUIStyle(GUI.skin.box) {
-                        richText = true,
+                        richText  = true,
                         alignment = TextAnchor.UpperLeft
                     }
                 );
