@@ -37,7 +37,7 @@ Transform:
   - {fileID: 2792101106062756676}
   - {fileID: 8209330579043486767}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4494720432750024888
 MonoBehaviour:
@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7653398578591161134, guid: 2d4287c53fceb204d806a5eede0cea65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.322
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7653398578591161134, guid: 2d4287c53fceb204d806a5eede0cea65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -400,6 +400,10 @@ PrefabInstance:
     - target: {fileID: 8022768002783755694, guid: 2d4287c53fceb204d806a5eede0cea65, type: 3}
       propertyPath: m_Name
       value: PhysicallySeparatedSkeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8022768002783755694, guid: 2d4287c53fceb204d806a5eede0cea65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8082307568663548713, guid: 2d4287c53fceb204d806a5eede0cea65, type: 3}
       propertyPath: m_Mesh
