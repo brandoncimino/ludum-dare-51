@@ -8,6 +8,7 @@ namespace Code.Runtime.Skeletons
         public GameObject          BundleOfBones;
         public GameObject          EnemySkeleton;
         public SkeletonMovement    Locomoter;
+        public SkeletonSpawner spawner;
         public SkeletonAI          TargetAquisitioner;
         public CharacterController PuppetMaster;
         public float cleanUpDelay = 5f;
@@ -34,6 +35,9 @@ namespace Code.Runtime.Skeletons
             }
 
             Invoke("CleanUp", cleanUpDelay);
+
+            EventManager.current.OnKillEnemy();
+            spawner.decrimentSkeletonCount();
         }
 
         private void CleanUp()
