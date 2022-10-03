@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager current;
     public bool gamePaused { get; private set; } = false;
 
+    [SerializeField]
+    private int sceneToLoadOnRestart = 2;
+
     private void Awake() {
         current = this;
     }
@@ -19,6 +22,10 @@ public class GameManager : MonoBehaviour
     {
         EventManager.current.GameStarted += StartGame;
         EventManager.current.GameEnded += EndGame;
+
+        EventManager.current.GameWon += GameWon;
+        EventManager.current.GameRestart += GameRestart;
+
         EventManager.current.GamePause += PauseGame;
         EventManager.current.GameUnPause += UnPauseGame;
 
@@ -30,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         EventManager.current.GameStarted -= StartGame;
         EventManager.current.GameEnded   -= EndGame;
+
+        EventManager.current.GameWon -= GameWon;
+        EventManager.current.GameRestart -= GameRestart;
+
         EventManager.current.GamePause   -= PauseGame;
         EventManager.current.GameUnPause   -= UnPauseGame;
     }
@@ -42,6 +53,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    private void GameRestart()
+    {
+        SceneManager.LoadScene(sceneToLoadOnRestart);
+    }
+
+    private void GameWon()
+    {
+        EventManager.current.OnInitializeEndUI();
+    }
+    
     private void PauseGame()
     {
         Time.timeScale = 0;

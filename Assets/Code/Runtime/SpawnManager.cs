@@ -42,25 +42,19 @@ public class SpawnManager : MonoBehaviour
             if (elapsedTime > secondsBetweenSpawn && skeletonsSpawned < maxGlobalSkeletonSpawn)
             {
                 elapsedTime = 0;
-
+                
                 //loop through each spawner and sapwn enemies
                 //maxSpawnersUsedAtATime indicates the amount of spawners we want to activate at a time
                 int i = 0;
-                foreach (KeyValuePair<float, SkeletonSpawner> kvp in closestToFarthestSpawners)
+                foreach(KeyValuePair<float, SkeletonSpawner> kvp in closestToFarthestSpawners)
                 {
-                    if (i >= maxSpawnersUsedAtATime)
-                    {
+                    if (i >= maxSpawnersUsedAtATime || skeletonsSpawned >= ScoreController.current.numOfEnemies) {
                         break;
                     }
 
-                    try
-                    {
-                        spawnEnemies(kvp.Value, maxSpawnersUsedAtATime - i);
-                    }
-                    catch (System.InvalidOperationException e)
-                    {
-                        Debug.Log("Couldn't spawn skeleton");
-                    }
+                    //spawnEnemies returns the number of enemies spawned, and we add that to the running total
+                    //that way, even with batch spawns, we can detect when we go over board spawning enemeis
+                    skeletonsSpawned += spawnEnemies(kvp.Value, maxSpawnersUsedAtATime - i, skeletonsSpawned);
 
                     i++;
                 }
@@ -70,17 +64,37 @@ public class SpawnManager : MonoBehaviour
 
     //calls the skeleton spawner to determine the coords to spawn skeletons at
     //bacthSpawnAmount allows skeletons to be spawned in clusters
-    private void spawnEnemies(SkeletonSpawner spawner, int batchSpawnAmount)
+    //returns the number of enemies that were successfully spawned
+    private int spawnEnemies(SkeletonSpawner spawner, int batchSpawnAmount, int skeletonsSpawned)
     {
-        for (int i = 0; i < batchSpawnAmount; i++)
+        int successfullSpawn = 0;
+        
+        try
         {
-            Vector3 spawnPos = spawner.determineSpawnLocation() ?? Vector3.zero;
-
-            if (spawnPos != Vector3.zero)
+            for (int i = 0; i < batchSpawnAmount; i++)
             {
-                GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
-                spawner.skeletonCount++;
+                Vector3 spawnPos = spawner.determineSpawnLocation() ?? Vector3.zero;
+
+                //if we could determine a spawn position
+                //else if the number spawned in this function is greater than or equal to the number remaining, exit the function
+                int numberSpawned = skeletonsSpawned + successfullSpawn;
+                if (spawnPos != Vector3.zero && numberSpawned < ScoreController.current.numOfEnemies)
+                {
+                    GameObject newEnemy = Instantiate(spawner.skeletonPrefab, spawnPos, Quaternion.identity);
+                    spawner.skeletonCount++;
+                    successfullSpawn++;
+                }
+                else if (numberSpawned >= ScoreController.current.numOfEnemies)
+                {
+                    return successfullSpawn;
+                }
             }
         }
+        catch (System.InvalidOperationException e)
+        {
+            return successfullSpawn;
+        }
+
+        return successfullSpawn;
     }
 }
