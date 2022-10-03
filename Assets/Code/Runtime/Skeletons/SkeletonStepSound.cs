@@ -25,7 +25,7 @@ namespace Code.Runtime.Skeletons {
             MyAudio.clip = SandStepSounds[Random.Range(0, SandStepSounds.Count)];
 
             //Play the Track
-            MyAudio.Play();
+            MyAudio.PlayOneShot(MyAudio.clip);
         }
     }
 }
