@@ -507,7 +507,6 @@ GameObject:
   - component: {fileID: 1686164035}
   - component: {fileID: 1686164033}
   - component: {fileID: 1686164034}
-  - component: {fileID: 1303288971}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -530,7 +529,7 @@ Transform:
   - {fileID: 1200692547776302608}
   - {fileID: 872169411720948425}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1628783796662707346
 MeshFilter:
@@ -629,14 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Neck: {fileID: 1200692547776302608}
---- !u!81 &1303288971
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628783796662707345}
-  m_Enabled: 1
 --- !u!1 &3451648716622808148
 GameObject:
   m_ObjectHideFlags: 0
