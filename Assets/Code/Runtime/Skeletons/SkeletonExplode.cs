@@ -18,6 +18,7 @@ namespace Code.Runtime.Skeletons
         public void Blasted(Vector3 bombPos) {
             EventManager.current.OnKillEnemy();
             spawner.decrimentSkeletonCount();
+            Invoke("CleanUp", cleanUpDelay);
             Debug.Log("Skeleton should crumble");
             
             //Skeleton is dead.
@@ -35,8 +36,6 @@ namespace Code.Runtime.Skeletons
             {
                 boneRigidbody.AddExplosionForce(50f,bombPos,20f);
             }
-
-            Invoke("CleanUp", cleanUpDelay);
         }
 
         private void CleanUp()
