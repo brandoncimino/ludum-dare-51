@@ -56,6 +56,7 @@ MonoBehaviour:
   Locomoter: {fileID: 4494720432750024892}
   TargetAquisitioner: {fileID: 4494720432750024891}
   PuppetMaster: {fileID: 4494720432750024894}
+  cleanUpDelay: 5
   SeparatedBoneRigidbodies:
   - {fileID: 0}
   - {fileID: 0}

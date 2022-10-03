@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -381,6 +381,62 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 698316843064099937}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameEnded
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EventManager, Code.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445371470955, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 698316843064099937}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameUnPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EventManager, Code.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685725445555234030, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 41891de02521d1043b0cc4f64dd280db, type: 3}
@@ -470,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -715,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -749,10 +805,18 @@ PrefabInstance:
     - target: {fileID: 1033857372, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 698316843064099937}
+    - target: {fileID: 1033857372, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHideInputField
       objectReference: {fileID: 0}
     - target: {fileID: 470742125692099700, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 698316843064099937}
+    - target: {fileID: 470742125692099700, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameRestart
       objectReference: {fileID: 0}
     - target: {fileID: 470742126140854338, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
       propertyPath: m_Pivot.x
@@ -849,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 2070439587347374882, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 698316843064099937}
+    - target: {fileID: 2070439587347374882, guid: ffda0db3e13191f44805fe2c1711d520, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameEnded
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -939,7 +1007,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -962,6 +1030,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f1ce792e611bb4da8c763b0dc55c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1178339884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9019502207802700939, guid: 6caaf9aefd2c7b24fa31c6e05ac3ffd0, type: 3}
+  m_PrefabInstance: {fileID: 694850687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1399415009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1021,7 +1094,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -1303,7 +1376,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -1385,7 +1458,7 @@ PrefabInstance:
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: skeletonPrefab
       value: 
-      objectReference: {fileID: 6092380319813689043, guid: 3a2fa200fe2028b449e998a8058a6d05, type: 3}
+      objectReference: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
     - target: {fileID: 7618585315719796537, guid: 0a6889411d300154587ddba6547fd414, type: 3}
       propertyPath: xCollisionOffset
       value: 0.5
@@ -1581,6 +1654,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905994684896198520, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 1178339884}
+    - target: {fileID: 1905994684896198520, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
       propertyPath: endScreen
       value: 
       objectReference: {fileID: 955273660}
@@ -1619,3 +1696,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
+--- !u!114 &698316843064099937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 698316844245273098, guid: 068f93a979ffdb7429cc01214268a29e, type: 3}
+  m_PrefabInstance: {fileID: 698316843064099936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32bc0f7867e69f8408aa3246bb765fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

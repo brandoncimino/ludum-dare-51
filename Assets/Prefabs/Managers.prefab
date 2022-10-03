@@ -71,7 +71,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerPrefab: {fileID: 0}
-  secondsBetweenSpawn: 1
+  secondsBetweenSpawn: 7
   maxSpawnersUsedAtATime: 3
   maxGlobalSkeletonSpawn: 20
 --- !u!114 &698316844245273099
