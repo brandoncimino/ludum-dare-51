@@ -22,8 +22,11 @@ public class EventManager : MonoBehaviour {
     public event Action GameWon;
     public void OnGameWon() => GameWon?.Invoke();
 
+    public event Action GameRestart;
+    public void OnGameRestart() => GameRestart?.Invoke();
+
     #endregion
-    
+
     #region Explosion-Stuff
     public event Action BombExploded;
     public void OnBombExploded() {
@@ -65,6 +68,16 @@ public class EventManager : MonoBehaviour {
     #region Initialize UI
     public event Action<int, int> InitializeUI;
     public void OnInitializeUI(int waveCount, int killCount) => InitializeUI?.Invoke(waveCount, killCount);
+    #endregion
+
+    #region Initialize End UI
+    public event Action InitializeEndUI;
+    public void OnInitializeEndUI() => InitializeEndUI?.Invoke();
+    #endregion
+
+    #region Hide Input Field
+    public event Action HideInputField;
+    public void OnHideInputField() => HideInputField?.Invoke();
     #endregion
 
 }

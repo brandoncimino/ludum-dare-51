@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager current;
 
+    [SerializeField]
+    private int sceneToLoadOnRestart = 2;
+
     private void Awake() {
         current = this;
     }
@@ -18,12 +21,16 @@ public class GameManager : MonoBehaviour
     {
         EventManager.current.GameStarted += StartGame;
         EventManager.current.GameEnded += EndGame;
+        EventManager.current.GameWon += GameWon;
+        EventManager.current.GameRestart += GameRestart;
     }
     
     private void OnDestroy()
     {
         EventManager.current.GameStarted -= StartGame;
         EventManager.current.GameEnded   -= EndGame;
+        EventManager.current.GameWon -= GameWon;
+        EventManager.current.GameRestart -= GameRestart;
     }
 
     private void StartGame() {
@@ -32,5 +39,23 @@ public class GameManager : MonoBehaviour
 
     private void EndGame() {
         SceneManager.LoadScene(0);
+    }
+
+    private void GameRestart()
+    {
+        SceneManager.LoadScene(sceneToLoadOnRestart);
+    }
+
+    private void GameWon()
+    {
+        EventManager.current.OnInitializeEndUI();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            EventManager.current.OnGameWon();
+        }
     }
 }

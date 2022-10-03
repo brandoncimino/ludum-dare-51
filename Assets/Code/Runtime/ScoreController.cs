@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    private int wavesCleared = 0;
+   public int wavesCleared { get; private set; } = 0;
 
     [SerializeField]
     private int enemyPool = 25;
     [SerializeField]
     private float increaseEnemyPoolByPercent = 0.95f;
 
-    private int numOfEnemies = 0;
+    public int numOfEnemies { get; private set; } = 0;
+
+
+    public static ScoreController current;
+
+    private void Awake()
+    {
+        current = this;
+    }
 
     private void Start()
     {
