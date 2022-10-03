@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Code.Runtime.PlayerInput {
     [Serializable]
     public record InputManagerAxis(string Name) : IInputAxis {
-        public SRatio Position => Input.GetAxis(Name);
+        public float Position => Input.GetAxis(Name);
 
         public static readonly InputManagerAxis Horizontal = new("Horizontal");
         public static readonly InputManagerAxis Vertical   = new("Vertical");
