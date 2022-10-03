@@ -24,6 +24,8 @@ public class UIController : MonoBehaviour
     private Button quitGameButton;
     [SerializeField]
     private GameObject healthBar;
+    [SerializeField]
+    private GameObject HUD;
 
     [SerializeField]
     private Sprite fullSprite;
@@ -45,9 +47,6 @@ public class UIController : MonoBehaviour
 
         EventManager.current.TogglePauseUI += TogglePauseUI;
         EventManager.current.UpdateHealthBar += UpdateHealthBar;
-
-        resumeGameButton.onClick.AddListener(ResumeGameListener);
-        quitGameButton.onClick.AddListener(QuitGameListener);
     }
 
     private void OnDestroy()
@@ -80,6 +79,7 @@ public class UIController : MonoBehaviour
     private void InitializeEndUI()
     {
         endScreen.SetActive(true);
+        ToggleHUD(false);
     }
 
     private void HideInputField()
@@ -92,20 +92,16 @@ public class UIController : MonoBehaviour
         PlayerPrefs.SetString("ScoreBoard", scoreBoard);
         scoreBoardField.text = scoreBoard;
     }
+
+    private void ToggleHUD(bool setActive)
+    {
+        HUD.SetActive(setActive);
+    }
     
     private void TogglePauseUI(bool setActive)
     {
+        ToggleHUD(!setActive);
         pauseMenuUI.SetActive(setActive);
-    }
-
-    private void ResumeGameListener()
-    {
-        EventManager.current.OnGameUnPause();
-    }
-
-    private void QuitGameListener()
-    {
-        EventManager.current.OnGameEnded();
     }
 
     private void UpdateHealthBar(int totalHealth) 
