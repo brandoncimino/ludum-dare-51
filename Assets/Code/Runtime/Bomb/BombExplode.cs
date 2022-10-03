@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,6 +41,8 @@ namespace Code.Runtime
      * gameObjects with IExplodable (as long as ALL gameObjects with IExplodable are on that layerMask)
      */
         public LayerMask BlastableLayer;
+
+        public GameObject KaboomFX;
     
         //private ParticleSystem explosionPS;
     
@@ -116,6 +119,14 @@ namespace Code.Runtime
             //TODO: Determine best force to apply. Probably needs a lot of positive Y (World perspective) to emulate the bomb exploding
             myRigidbody.AddForce(Random.insideUnitSphere.normalized * 1000);
             myAudio.Play();
+            KaboomFX.SetActive(true);
+            KaboomFX.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+            Invoke(nameof(DeactivateKaboomFX),.2f);
+        }
+
+        private void DeactivateKaboomFX()
+        {
+            KaboomFX.SetActive(false);
         }
     }
 }
