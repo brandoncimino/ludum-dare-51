@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7618585315719796537
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f1ce792e611bb4da8c763b0dc55c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonPrefab: {fileID: 1637607337427925452, guid: 801805adc2e74c94b9674bf413202b9a, type: 3}
+  skeletonPrefab: {fileID: 4494720432750024887, guid: d7cf759f9880e2a4e99dcf944ef5a241, type: 3}
   spawnCollisionDetectionRadius: 1
   excludeSpawnCollisionTags:
   - Floor
