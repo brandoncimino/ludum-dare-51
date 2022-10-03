@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI numberEnemiesRemain;
     [SerializeField]
+    private TextMeshProUGUI bombTimer;
+    [SerializeField]
     private GameObject endScreen;
     [SerializeField]
     private TMP_InputField inputField;
@@ -47,6 +49,8 @@ public class UIController : MonoBehaviour
 
         EventManager.current.TogglePauseUI += TogglePauseUI;
         EventManager.current.UpdateHealthBar += UpdateHealthBar;
+
+        EventManager.current.UpdateBomberUI += UpdateBomberUI;
     }
 
     private void OnDestroy()
@@ -59,6 +63,8 @@ public class UIController : MonoBehaviour
 
         EventManager.current.TogglePauseUI -= TogglePauseUI;
         EventManager.current.UpdateHealthBar -= UpdateHealthBar;
+
+        EventManager.current.UpdateBomberUI -= UpdateBomberUI;
     }
 
     //updates the enemies remaining textbox
@@ -102,6 +108,13 @@ public class UIController : MonoBehaviour
     {
         ToggleHUD(!setActive);
         pauseMenuUI.SetActive(setActive);
+    }
+
+    private void UpdateBomberUI(float time)
+    {
+        float truncatedTime = Mathf.Round(time * 100f) / 100f;
+        bombTimer.text = truncatedTime.ToString();
+
     }
 
     private void UpdateHealthBar(int totalHealth) 

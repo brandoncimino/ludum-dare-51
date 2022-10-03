@@ -65,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMind: {fileID: 1637607337427925455}
   speed: 0
+  chargeSpeed: 3
   myHead: {fileID: 3078190560532969498}
   myState: 0
   controller: {fileID: 1637607337427925445}
