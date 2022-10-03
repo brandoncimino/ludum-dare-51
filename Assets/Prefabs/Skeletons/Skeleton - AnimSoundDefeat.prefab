@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMind: {fileID: 4494720432750024891}
-  speed: 2
+  speed: 1
   myHead: {fileID: 134797275238099946}
   myState: 0
   controller: {fileID: 4494720432750024894}
