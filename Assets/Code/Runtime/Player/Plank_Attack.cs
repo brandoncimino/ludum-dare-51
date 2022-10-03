@@ -11,6 +11,10 @@ public class Plank_Attack : MonoBehaviour
     public float explosionRange;
 
     public float explosionBonusUpwardForce;
+
+    public Animator plankAnimator;
+
+    public KeyCode attackWithPlank = KeyCode.Mouse0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +24,9 @@ public class Plank_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(attackWithPlank))
         {
-            //(transform);
+            plankAnimator.SetBool("Attacking",true);
         }
     }
     //Summary
@@ -35,5 +39,10 @@ public class Plank_Attack : MonoBehaviour
         //TODO: Offset explosionOriginPoint away from player based on camera angle
         targetBomb.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, explosionOriginPoint, explosionRange, explosionBonusUpwardForce);
         //TODO: Decide whether or not this explosion affects any other GameObjects(Player,Enemies,Parts of Enemies)
+    }
+
+    private void ResetAttack()
+    {
+        plankAnimator.SetBool("Attacking",false);
     }
 }
