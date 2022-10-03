@@ -86,6 +86,7 @@ public class EventManager : MonoBehaviour {
     #region Hide Input Field
     public event Action HideInputField;
     public void OnHideInputField() => HideInputField?.Invoke();
+    #endregion
 
     #region Toggle Pause Menu UI
     public event Action<bool> TogglePauseUI;
