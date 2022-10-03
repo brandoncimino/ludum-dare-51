@@ -37,7 +37,7 @@ Transform:
   - {fileID: 2792101106062756676}
   - {fileID: 8209330579043486767}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4494720432750024888
 MonoBehaviour:
@@ -132,6 +132,10 @@ MonoBehaviour:
   myBody: {fileID: 4494720432750024892}
   myAIState: 0
   myEnemy: {fileID: 0}
+  attackDistance: 1.5
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!143 &4494720432750024894
 CharacterController:
   m_ObjectHideFlags: 0
