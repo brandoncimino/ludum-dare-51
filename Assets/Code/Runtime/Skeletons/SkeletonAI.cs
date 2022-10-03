@@ -18,6 +18,9 @@ public class SkeletonAI : MonoBehaviour {
     private float ShoutTime;
     private float ListenTime;
     private bool  hasListened = false;
+
+    public float     attackDistance = 1.5f;
+    public LayerMask playerMask;
     
     // Start is called before the first frame update
     void Start() {
@@ -158,6 +161,18 @@ public class SkeletonAI : MonoBehaviour {
         MakeDecision(mayWander: false);
         ListenTime = Time.time + 0.5f;
         
+    }
+
+    /// <summary>
+    /// Only ever run by Animation Event. Creates a Raycast from the skeleton to the player, damaging the player if they
+    /// are close enough 
+    /// </summary>
+    void SkeleThwack() {
+        var attackRay = Physics.Raycast(transform.position, transform.position - myEnemy.position, attackDistance, playerMask);
+        if (attackRay) {
+            //Damage Player
+            Debug.Log("Player has been thwacked!");
+        }
     }
     
 }
