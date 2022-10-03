@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: skeletonPirate01_animation_sequence_v002.ma
-//Last modified: Mon, Oct 03, 2022 03:57:48 PM
+//Last modified: Mon, Oct 03, 2022 05:58:23 PM
 //Codeset: 1252
 file -rdi 1 -ns "skeletonPirate_rig_v01" -rfn "skeletonPirate_rig_v01RN" -op
 		 "v=0;" -typ "mayaAscii" "C:/Users/chezm/Documents/LudumDare/ludumDare2022/ludum-dare-51/Assets/Art/Visuals/Char/skeletonPirate_01/publish/v1/skeletonPirate_rig_v01.ma";
@@ -27,19 +27,19 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202202161415-df43006fd3";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 22000)";
-fileInfo "UUID" "EA83F269-4D02-268F-24D2-91B8830C335E";
+fileInfo "UUID" "44C12BEA-47C3-58CA-FD1A-89AB961C1AFB";
 createNode transform -s -n "persp";
 	rename -uid "16B527F0-42E7-A03F-9D3F-C4AFDAF46153";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 10689.75090558052 12482.834602004661 68538.548637612679 ;
-	setAttr ".r" -type "double3" -3.3383527296848858 -710.59999999996012 -5.0372561513317e-17 ;
+	setAttr ".t" -type "double3" 20259.73680190933 8335.3321633579071 48733.995881981267 ;
+	setAttr ".r" -type "double3" 0.26164727031740154 -694.59999999995023 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "19C53A29-4800-8F2B-2EF6-B7A58620C21F";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
 	setAttr ".ncp" 1;
 	setAttr ".fcp" 1000000000;
-	setAttr ".coi" 67389.97185750115;
+	setAttr ".coi" 54748.188608320459;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -168,7 +168,7 @@ createNode script -n "uiConfigurationScriptNode";
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
 	rename -uid "DC832CB7-4319-689F-68FB-2CB363E13F42";
-	setAttr ".b" -type "string" "playbackOptions -min 305 -max 361 -ast 1 -aet 361 ";
+	setAttr ".b" -type "string" "playbackOptions -min 1 -max 361 -ast 1 -aet 361 ";
 	setAttr ".st" 6;
 createNode aiOptions -s -n "defaultArnoldRenderOptions";
 	rename -uid "3035440F-415D-5AA2-0D32-A7BA081C841C";
@@ -14432,7 +14432,7 @@ createNode reference -n "skeletonPirate01_animation_run_v001:skeletonPirate_rig_
 		"skeletonPirate01_animation_run_v001:skeletonPirate_rig_v01RN"
 		"skeletonPirate_rig_v01RN" 0
 		"skeletonPirate_rig_v01RN" 290
-		2 "|skeletonPirate_rig_v01:skeleton_rig_Grp" "visibility" " 1"
+		2 "|skeletonPirate_rig_v01:skeleton_rig_Grp" "visibility" " 0"
 		2 "|skeletonPirate_rig_v01:skeleton_rig_Grp|skeletonPirate_rig_v01:skeleton_ctrls_Grp|skeletonPirate_rig_v01:Master_ctrl_o|skeletonPirate_rig_v01:Master_ctrl" 
 		"visibility" " 1"
 		2 "|skeletonPirate_rig_v01:skeleton_rig_Grp|skeletonPirate_rig_v01:skeleton_ctrls_Grp|skeletonPirate_rig_v01:Master_ctrl_o|skeletonPirate_rig_v01:Master_ctrl" 
@@ -18528,8 +18528,8 @@ createNode animCurveTL -n "skeletonPirate01_animation_run_v001:L_pinky_ctrl_01_t
 	setAttr -s 10 ".kox[9]"  1;
 	setAttr -s 10 ".koy[9]"  0;
 select -ne :time1;
-	setAttr ".o" 305;
-	setAttr ".unw" 305;
+	setAttr ".o" 61;
+	setAttr ".unw" 61;
 select -ne :hardwareRenderingGlobals;
 	setAttr ".otfna" -type "stringArray" 22 "NURBS Curves" "NURBS Surfaces" "Polygons" "Subdiv Surface" "Particles" "Particle Instance" "Fluids" "Strokes" "Image Planes" "UI" "Lights" "Cameras" "Locators" "Joints" "IK Handles" "Deformers" "Motion Trails" "Components" "Hair Systems" "Follicles" "Misc. UI" "Ornaments"  ;
 	setAttr ".otfva" -type "Int32Array" 22 0 1 1 1 1 1
