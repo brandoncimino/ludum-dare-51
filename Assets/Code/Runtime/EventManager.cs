@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Code.Runtime.Skeletons;
+
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
@@ -21,9 +23,15 @@ public class EventManager : MonoBehaviour {
 
     public event Action GameWon;
     public void OnGameWon() => GameWon?.Invoke();
-
+    
     public event Action GameRestart;
     public void OnGameRestart() => GameRestart?.Invoke();
+
+    public event Action GamePause;
+    public void OnGamePause() => GamePause?.Invoke();
+
+    public event Action GameUnPause;
+    public void OnGameUnPause() => GameUnPause?.Invoke();
 
     #endregion
 
@@ -41,8 +49,8 @@ public class EventManager : MonoBehaviour {
 
     #region Skeletons
 
-    public event Action SkeletonShouted;
-    public void         OnSkeletonShouted() => SkeletonShouted?.Invoke();
+    public event Action <SkeletonShout> SkeletonShouted;
+    public void         OnSkeletonShouted(SkeletonShout shout) => SkeletonShouted?.Invoke(shout);
 
     #endregion
 
@@ -78,6 +86,11 @@ public class EventManager : MonoBehaviour {
     #region Hide Input Field
     public event Action HideInputField;
     public void OnHideInputField() => HideInputField?.Invoke();
+
+    #region Toggle Pause Menu UI
+    public event Action<bool> TogglePauseUI;
+    public void OnTogglePauseUI(bool setActive) => TogglePauseUI?.Invoke(setActive);
+
     #endregion
 
 }

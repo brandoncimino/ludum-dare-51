@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
@@ -17,20 +18,36 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreBoardField;
 
+    private GameObject pauseMenuUI;
+    [SerializeField]
+    private Button resumeGameButton;
+    [SerializeField]
+    private Button quitGameButton;
+
+
     private void Start()
     {
         EventManager.current.UpdateKillCount += UpdateKillCount;
         EventManager.current.InitializeUI += InitializeUI;
+
         EventManager.current.InitializeEndUI += InitializeEndUI;
         EventManager.current.HideInputField += HideInputField;
+
+        EventManager.current.TogglePauseUI += TogglePauseUI;
+
+        resumeGameButton.onClick.AddListener(ResumeGameListener);
+        quitGameButton.onClick.AddListener(QuitGameListener);
     }
 
     private void OnDestroy()
     {
         EventManager.current.UpdateKillCount -= UpdateKillCount;
         EventManager.current.InitializeUI -= InitializeUI;
+
         EventManager.current.InitializeEndUI -= InitializeEndUI;
         EventManager.current.HideInputField += HideInputField;
+
+        EventManager.current.TogglePauseUI -= TogglePauseUI;
     }
 
     //updates the enemies remaining textbox
@@ -45,6 +62,7 @@ public class UIController : MonoBehaviour
         numberOfWavesText.text = waveNum.ToString();
         numberEnemiesRemain.text = killCount.ToString();
     }
+
 
     //initializes the UI on start up and whenever a wave is cleared
     private void InitializeEndUI()
@@ -61,5 +79,20 @@ public class UIController : MonoBehaviour
 
         PlayerPrefs.SetString("ScoreBoard", scoreBoard);
         scoreBoardField.text = scoreBoard;
+    }
+    
+    private void TogglePauseUI(bool setActive)
+    {
+        pauseMenuUI.SetActive(setActive);
+    }
+
+    private void ResumeGameListener()
+    {
+        EventManager.current.OnGameUnPause();
+    }
+
+    private void QuitGameListener()
+    {
+        EventManager.current.OnGameEnded();
     }
 }

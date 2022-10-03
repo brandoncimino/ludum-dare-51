@@ -15,14 +15,18 @@ public class SkeletonAI : MonoBehaviour {
     private Transform        myHead;
 
     private float DecisionTime;
+    private float ShoutTime;
+    private float ListenTime;
     private bool  hasListened = false;
     
     // Start is called before the first frame update
     void Start() {
         
         // initial variable settings
-        myHead = myBody.myHead;  // make sure body and mind share the same head
-        
+        myHead     = myBody.myHead; // make sure body and mind share the same head
+        ShoutTime  = Time.time;
+        ListenTime = Time.time;
+
         // initial setup
         MakeDecision(); // initial decision about state and target
         
@@ -36,9 +40,12 @@ public class SkeletonAI : MonoBehaviour {
     }
 
     // Update is called once per frame
+
     void Update() {
 
-        hasListened = false;
+        if (Time.time > ListenTime) {
+            hasListened = false; // listen to shouts again
+        }
         
         // update decision counter
         if (Time.time > DecisionTime) {
@@ -47,35 +54,40 @@ public class SkeletonAI : MonoBehaviour {
             
     }
 
-    void MakeDecision() {
+    void MakeDecision(bool mayWander = true) {
         
         // determine distance to myEnemy
-        var diff   = transform.position   - myEnemy.position;
-        diff.y = 0; // only consider horizontal distance
-        var dist   = diff.magnitude;
-        
-        DecideState(dist);     // decide which state to change into and for how long
+
+        var (dist, diff) = CalculateHorizontalDistance(myEnemy.transform.position);
+        DecideState(dist, mayWander);     // decide which state to change into and for how long
         DecideDirection(diff); // determine which direction to move towards
         myBody.GetMentalCommands(); // communicate with myBody
 
         CommunicateDecision();
     }
 
-    void DecideState(float dist) {
+    (float, Vector3) CalculateHorizontalDistance(Vector3 position) {
+        var diff = transform.position - position;
+        diff.y = 0; // only consider horizontal distance
+        var dist = diff.magnitude;
+        return (dist, diff);
+    }
+
+    void DecideState(float dist, bool mayWander = true) {
 
         // depending on enemy type and distance to enemy, choose a different AI state
         // override in subclasses, e.g. for ranged skeletons
         
-        DecisionTime = Time.time + 1f;
+        DecisionTime = Time.time + 0.5f;
         myAIState    = SkeletonAIState.Attacking;
         
         if (dist > 2f) {
             myAIState = SkeletonAIState.Charging;
         }
         
-        if (dist > 15f) {
+        if (dist > 15f && mayWander) {
             myAIState    = SkeletonAIState.Wandering;
-            DecisionTime = Time.time + dist / 5f;
+            DecisionTime = Time.time + dist / 3f;
         }
         
     }
@@ -112,22 +124,40 @@ public class SkeletonAI : MonoBehaviour {
     
 
     void CommunicateDecision() {
-        if (myAIState != SkeletonAIState.Wandering) {
-            
-            // update surrounding skeletons about what we are doing
-            hasListened = true;
-            EventManager.current.OnSkeletonShouted();
+        if (myAIState == SkeletonAIState.Wandering) {
+            return;
         }
-    }
 
-    void ObayCommands() {
-        if (hasListened || myAIState == SkeletonAIState.Attacking) {
+        if (Time.time > ShoutTime) {
             return;
         }
         
-        // listen to shout
-        Debug.Log("A shout has been heard.");
+        // update surrounding skeletons about what we are doing
+        hasListened = true; // avoid infinite shouting loops
+
+        var shout = new SkeletonShout(newState: myAIState, shouter: transform.position, enemy: null);
+        EventManager.current.OnSkeletonShouted(shout);
+
+        ShoutTime = Time.time + 1f;
     }
-    
+
+    void ObayCommands(SkeletonShout shout) {
+        if (hasListened) {
+            // avoid infinite loops
+            return;
+        }
+
+        var (dist, diff) = CalculateHorizontalDistance(shout.origin);
+        if (dist > 3f) {
+            // outside of hearing range
+            return;
+        }
+        
+        hasListened = true; // avoid infinite loops
+        // todo: react to communicated threats rather than thinking for yourself
+        MakeDecision(mayWander: false);
+        ListenTime = Time.time + 0.5f;
+        
+    }
     
 }
