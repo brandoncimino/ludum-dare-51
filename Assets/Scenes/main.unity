@@ -17580,7 +17580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5120778550258268093, guid: ae9806f5883934c4992f2e753326256c, type: 3}
       propertyPath: m_Name
-      value: Terrain
+      value: Island
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
