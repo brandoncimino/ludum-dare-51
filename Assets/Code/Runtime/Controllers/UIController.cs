@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+
+using Code.Runtime.Controllers;
 
 using TMPro;
 
@@ -6,9 +9,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI numberOfWavesText;
-    [SerializeField] private TextMeshProUGUI numberEnemiesRemain;
-    [SerializeField] private TextMeshProUGUI bombTimer;
     [SerializeField] private GameObject      endScreen;
     [SerializeField] private TMP_InputField  inputField;
     [SerializeField] private TextMeshProUGUI scoreBoardField;
@@ -23,7 +23,25 @@ public class UIController : MonoBehaviour {
     [SerializeField] private Sprite halfSprite;
     [SerializeField] private Sprite threeQuarterSprite;
 
+    #region Tracked Values
+
+    [SerializeField] private ScoreDisplayRef ScoreDisplayRef;
+
+    private int   _killCount;
+    private float _bombTime;
+    private int   _waveNum;
+
+    #endregion
+
     private void Start() {
+        if (ScoreDisplayRef == null) {
+            throw new InvalidOperationException($"You must assign {nameof(ScoreDisplayRef)}!");
+        }
+
+        ScoreDisplayRef.AddValue("☠",  () => $"{_killCount}");
+        ScoreDisplayRef.AddValue("💣", () => $"{_bombTime:N0} s");
+        ScoreDisplayRef.AddValue("🌊", () => $"{_waveNum}");
+
         EventManager.current.UpdateKillCount += UpdateKillCount;
         EventManager.current.InitializeUI    += InitializeUI;
 
@@ -49,15 +67,15 @@ public class UIController : MonoBehaviour {
         EventManager.current.UpdateBomberUI -= UpdateBomberUI;
     }
 
-    //updates the enemies remaining textbox
     private void UpdateKillCount(int killCount) {
-        numberEnemiesRemain.text = killCount.ToString();
+        _killCount = killCount;
     }
 
     //initializes the UI on start up and whenever a wave is cleared
     private void InitializeUI(int waveNum, int killCount) {
-        numberOfWavesText.text   = waveNum.ToString();
-        numberEnemiesRemain.text = killCount.ToString();
+        _waveNum = waveNum;
+        //TODO: this looked like a mistake - it was redundant with the UpdateKillCount() method, and was probably competing with it
+        // numberEnemiesRemain.text = killCount.ToString();
     }
 
     //initializes the UI on start up and whenever a wave is cleared
@@ -86,8 +104,7 @@ public class UIController : MonoBehaviour {
     }
 
     private void UpdateBomberUI(float time) {
-        float truncatedTime = Mathf.Round(time * 100f) / 100f;
-        bombTimer.text = truncatedTime.ToString();
+        _bombTime = time;
     }
 
     private void UpdateHealthBar(int totalHealth) {
